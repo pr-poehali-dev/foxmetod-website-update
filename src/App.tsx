@@ -47,6 +47,26 @@ import AnalitikaProdazh from "./pages/services/prodazhi-i-marketing/AnalitikaPro
 // Cifrovaya transformaciya sub-pages
 import IntegraciyaIi from "./pages/services/cifrovaya-transformaciya/IntegraciyaIi";
 import MigraciyaRossijskoePo from "./pages/services/cifrovaya-transformaciya/MigraciyaRossijskoePo";
+import UpravlenieZadachami from "./pages/services/cifrovaya-transformaciya/UpravlenieZadachami";
+import CifrovyeProcessy from "./pages/services/cifrovaya-transformaciya/CifrovyeProcessy";
+
+// Korporativnye treningi sub-pages
+import KonfliktMenedzhment from "./pages/services/korporativnye-treningi/KonfliktMenedzhment";
+import Delegirovanie from "./pages/services/korporativnye-treningi/Delegirovanie";
+import UpravlenieIzmeneniyami from "./pages/services/korporativnye-treningi/UpravlenieIzmeneniyami";
+import Liderstvo from "./pages/services/korporativnye-treningi/Liderstvo";
+
+// Ekspress resheniya sub-pages
+import UchastieVSobesedovaniyah from "./pages/services/ekspress-resheniya/UchastieVSobesedovaniyah";
+import NastrojkaPlanerок from "./pages/services/ekspress-resheniya/NastrojkaPlanerок";
+import BiznesInzhenery from "./pages/services/ekspress-resheniya/BiznesInzhenery";
+import ExpressAudit from "./pages/services/ekspress-resheniya/ExpressAudit";
+
+// Otraslevye resheniya sub-pages
+import PaketRitejl from "./pages/services/otraslevye-resheniya/PaketRitejl";
+import PaketProizvodstvo from "./pages/services/otraslevye-resheniya/PaketProizvodstvo";
+import PaketApk from "./pages/services/otraslevye-resheniya/PaketApk";
+import PaketServices from "./pages/services/otraslevye-resheniya/PaketServices";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +119,26 @@ const App = () => (
           {/* Cifrovaya transformaciya sub-pages */}
           <Route path="/services/cifrovaya-transformaciya/integraciya-ii" element={<IntegraciyaIi />} />
           <Route path="/services/cifrovaya-transformaciya/migraciya-rossijskoe-po" element={<MigraciyaRossijskoePo />} />
+          <Route path="/services/cifrovaya-transformaciya/upravlenie-zadachami" element={<UpravlenieZadachami />} />
+          <Route path="/services/cifrovaya-transformaciya/cifrovye-processy" element={<CifrovyeProcessy />} />
+
+          {/* Korporativnye treningi sub-pages */}
+          <Route path="/services/korporativnye-treningi/konflikt-menedzhment" element={<KonfliktMenedzhment />} />
+          <Route path="/services/korporativnye-treningi/delegirovanie" element={<Delegirovanie />} />
+          <Route path="/services/korporativnye-treningi/upravlenie-izmeneniyami" element={<UpravlenieIzmeneniyami />} />
+          <Route path="/services/korporativnye-treningi/liderstvo" element={<Liderstvo />} />
+
+          {/* Ekspress resheniya sub-pages */}
+          <Route path="/services/ekspress-resheniya/uchastie-sobesedovaniya" element={<UchastieVSobesedovaniyah />} />
+          <Route path="/services/ekspress-resheniya/nastrojka-planerok" element={<NastrojkaPlanerок />} />
+          <Route path="/services/ekspress-resheniya/biznes-inzhenery" element={<BiznesInzhenery />} />
+          <Route path="/services/ekspress-resheniya/express-audit" element={<ExpressAudit />} />
+
+          {/* Otraslevye resheniya sub-pages */}
+          <Route path="/services/otraslevye-resheniya/paket-ritejl" element={<PaketRitejl />} />
+          <Route path="/services/otraslevye-resheniya/paket-proizvodstvo" element={<PaketProizvodstvo />} />
+          <Route path="/services/otraslevye-resheniya/paket-apk" element={<PaketApk />} />
+          <Route path="/services/otraslevye-resheniya/paket-services" element={<PaketServices />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
