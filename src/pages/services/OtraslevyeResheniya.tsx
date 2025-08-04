@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import Layout from '@/components/Layout';
 
 const OtraslevyeResheniya: React.FC = () => {
   const services = [
@@ -37,7 +38,8 @@ const OtraslevyeResheniya: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <Layout>
+      <div className="min-h-screen bg-slate-50">
       <div className="container mx-auto px-4 py-8">
         <nav className="mb-8">
           <div className="flex items-center space-x-2 text-sm text-slate-600">
@@ -273,7 +275,8 @@ const OtraslevyeResheniya: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

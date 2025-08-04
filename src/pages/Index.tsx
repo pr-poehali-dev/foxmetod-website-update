@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Layout from '@/components/Layout';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -29,37 +30,39 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header 
-        formData={formData}
-        onInputChange={handleInputChange}
-        onSubmit={handleSubmit}
-      />
-      
-      <HeroSection 
-        formData={formData}
-        onInputChange={handleInputChange}
-        onSubmit={handleSubmit}
-      />
-      
-      <ServicesSection />
-      
-      <TeamSection />
-      
-      <TestimonialsSection 
-        formData={formData}
-        onInputChange={handleInputChange}
-        onSubmit={handleSubmit}
-      />
-      
-      <ContactSection 
-        formData={formData}
-        onInputChange={handleInputChange}
-        onSubmit={handleSubmit}
-      />
-      
-      <Footer />
-    </div>
+    <Layout>
+      <div className="min-h-screen bg-white">
+        <Header 
+          formData={formData}
+          onInputChange={handleInputChange}
+          onSubmit={handleSubmit}
+        />
+        
+        <HeroSection 
+          formData={formData}
+          onInputChange={handleInputChange}
+          onSubmit={handleSubmit}
+        />
+        
+        <ServicesSection />
+        
+        <TeamSection />
+        
+        <TestimonialsSection 
+          formData={formData}
+          onInputChange={handleInputChange}
+          onSubmit={handleSubmit}
+        />
+        
+        <ContactSection 
+          formData={formData}
+          onInputChange={handleInputChange}
+          onSubmit={handleSubmit}
+        />
+        
+        <Footer />
+      </div>
+    </Layout>
   );
 };
 

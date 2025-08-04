@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import Layout from '@/components/Layout';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -108,7 +109,8 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <Layout>
+      <div className="min-h-screen bg-gray-50">
       <Header 
         formData={{name: '', contact: '', company: '', description: ''}}
         onInputChange={() => {}}
@@ -269,7 +271,8 @@ const Services: React.FC = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

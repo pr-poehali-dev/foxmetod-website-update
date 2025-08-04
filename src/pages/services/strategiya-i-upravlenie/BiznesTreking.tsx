@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
+import Layout from '@/components/Layout';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -31,7 +32,8 @@ const BiznesTreking: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <Layout>
+      <div className="min-h-screen bg-gray-50">
       <Header 
         formData={formData}
         onInputChange={handleInputChange}
@@ -350,7 +352,8 @@ const BiznesTreking: React.FC = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 
