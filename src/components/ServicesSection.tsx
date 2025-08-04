@@ -1,47 +1,56 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
 const ServicesSection: React.FC = () => {
   const services = [
     {
+      id: 'strategiya-i-upravlenie',
       title: "Стратегия и управление",
-      description: "Бизнес-трекинг, стратегические сессии, OKR, интерим-менеджмент",
+      description: "Системные решения для стратегического развития и управления бизнесом",
       icon: "TrendingUp"
     },
     {
+      id: 'operacionnaya-deyatelnost',
       title: "Операционная деятельность",
-      description: "Диагностика процессов, регламенты, ОКМ, переобучение персонала",
+      description: "Оптимизация операционных процессов и повышение эффективности",
       icon: "Settings"
     },
     {
+      id: 'organizacionnaya-effektivnost',
       title: "Организационная эффективность",
-      description: "Организационный дизайн, системы мотивации, системный HR",
+      description: "Построение эффективной организационной структуры и HR-систем",
       icon: "Users"
     },
     {
+      id: 'prodazhi-i-marketing',
       title: "Продажи и маркетинг",
-      description: "Системный отдел продаж, маркетинговые стратегии",
+      description: "Системное построение отделов продаж и маркетинговых стратегий",
       icon: "Target"
     },
     {
+      id: 'cifrovaya-transformaciya',
       title: "Цифровая трансформация",
-      description: "Интеграция ИИ, миграция на российское ПО, управление задачами",
+      description: "Внедрение современных технологий и цифровизация процессов",
       icon: "Cpu"
     },
     {
+      id: 'ekspress-resheniya',
       title: "Экспресс-решения",
-      description: "Участие в собеседованиях, настройка планерок, бизнес-инженеры",
+      description: "Быстрые решения для конкретных бизнес-задач",
       icon: "Zap"
     },
     {
+      id: 'otraslevye-resheniya',
       title: "Отраслевые решения",
-      description: "Пакеты для ритейла, производства, АПК",
+      description: "Специализированные пакеты решений для различных отраслей",
       icon: "Building"
     },
     {
+      id: 'korporativnye-treningi',
       title: "Корпоративные тренинги",
-      description: "Конфликт-менеджмент, делегирование, управление изменениями",
+      description: "Развитие ключевых компетенций управленческой команды",
       icon: "GraduationCap"
     }
   ];
@@ -57,19 +66,25 @@ const ServicesSection: React.FC = () => {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {services.map((service, index) => (
-            <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name={service.icon} className="text-primary" size={24} />
-                </div>
-                <CardTitle className="text-lg">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">
-                  {service.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <Link key={index} to={`/services/${service.id}`} className="group">
+              <Card className="h-full border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 bg-white">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
+                    <Icon name={service.icon} className="text-blue-600" size={24} />
+                  </div>
+                  <CardTitle className="text-lg text-slate-900 group-hover:text-blue-900 transition-colors">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-slate-600 leading-relaxed">
+                    {service.description}
+                  </CardDescription>
+                  <div className="mt-4 flex items-center text-blue-600 group-hover:text-blue-700 font-medium text-sm">
+                    Подробнее
+                    <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
