@@ -24,10 +24,10 @@ const TeamSection: React.FC = () => {
   ];
 
   return (
-    <section id="team" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Наша команда — Ваша уверенность в результате</h2>
+    <section id="team" className="section-spacing">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Наша команда — Ваша уверенность в результате</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
             За каждым успешным проектом FOXMetoD стоит команда высококвалифицированных экспертов
           </p>

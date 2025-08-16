@@ -104,5 +104,24 @@
       system-ui,
       -apple-system,
       sans-serif;
+    line-height: 1.6;
+  }
+}
+
+@layer utilities {
+  .prose-like {
+    @apply max-w-2xl mx-auto leading-relaxed;
+  }
+
+  .content-width {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .reading-width {
+    @apply max-w-3xl mx-auto;
+  }
+
+  .section-spacing {
+    @apply py-16 lg:py-20;
   }
 }

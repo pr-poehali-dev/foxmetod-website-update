@@ -55,14 +55,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ formData, onInputChange, onSu
   return (
     <>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto animate-fade-in">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Ваш бизнес способен на большее. 
               <span className="text-primary block mt-2">Мы докажем это.</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               Мы помогаем предпринимателям обрести свободу и уверенность, превращая их бизнес в слаженную и эффективную систему.
             </p>
             <Dialog>
@@ -127,11 +127,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ formData, onInputChange, onSu
       </section>
 
       {/* Mission */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Миссия и философия Агентства FOXMetoD</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-8">Миссия и философия Агентства FOXMetoD</h2>
+            <p className="text-base lg:text-lg text-gray-600 leading-relaxed">
               Мы используем наш опыт и авторскую методологию, чтобы превращать сложные процессы в понятные и управляемые системы. 
               Наша цель — помочь каждому предпринимателю построить компанию, которая работает слаженно и эффективно, приносит стабильную прибыль 
               и, самое главное, — дарит своему владельцу свободу, уверенность в будущем и удовольствие от дела его жизни.
@@ -141,12 +141,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ formData, onInputChange, onSu
       </section>
 
       {/* FOXMetoD Meaning */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">FOXMetoD - это:</h2>
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">FOXMetoD - это:</h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-primary">F</span>
@@ -180,12 +180,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ formData, onInputChange, onSu
       </section>
 
       {/* Approach */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Наш подход</h2>
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Наш подход</h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
             {approaches.map((approach, index) => (
               <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <CardHeader>

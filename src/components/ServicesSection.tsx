@@ -56,15 +56,15 @@ const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Наши услуги</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+    <section id="services" className="py-16 lg:py-20 bg-gray-50">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Наши услуги</h2>
+          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Комплексные решения для систематизации и развития вашего бизнеса
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <Link key={index} to={`/services/${service.id}`} className="group">
               <Card className="h-full border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 bg-white">
