@@ -28,17 +28,17 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
             <span className="text-2xl font-bold text-gray-900">FOXMetoD</span>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-gray-600 hover:text-primary transition-colors">Услуги</a>
-            <a href="#team" className="text-gray-600 hover:text-primary transition-colors">Команда</a>
-            <a href="#testimonials" className="text-gray-600 hover:text-primary transition-colors">Отзывы</a>
-            <a href="#contact" className="text-gray-600 hover:text-primary transition-colors">Контакты</a>
+            <a href="#diagnosis" className="text-gray-600 hover:text-primary transition-colors">Диагностика</a>
+            <a href="#solution" className="text-gray-600 hover:text-primary transition-colors">Решение</a>
+            <a href="#cases" className="text-gray-600 hover:text-primary transition-colors">Кейсы</a>
+            <a href="#tools" className="text-gray-600 hover:text-primary transition-colors">Инструменты</a>
             <Dialog>
               <DialogTrigger asChild>
                 <Button className="bg-primary hover:bg-primary/90">Получить консультацию</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
-                  <DialogTitle>Заказать консультацию</DialogTitle>
+                  <DialogTitle>Заказать диагностику</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={onSubmit} className="space-y-4">
                   <div>
@@ -72,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                     />
                   </div>
                   <div>
-                    <Label htmlFor="description">Кратко опишите вашу задачу</Label>
+                    <Label htmlFor="description">Опишите текущую ситуацию в бизнесе</Label>
                     <Textarea
                       id="description"
                       name="description"
