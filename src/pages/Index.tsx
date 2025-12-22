@@ -7,8 +7,12 @@ import TransformationRoadmap from "@/components/TransformationRoadmap";
 import SolutionCasesTools from "@/components/SolutionCasesTools";
 import Footer from "@/components/Footer";
 import ChatAssistant from "@/components/ChatAssistant";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import Icon from "@/components/ui/icon";
 
 export default function Index() {
+  const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     position: '',
@@ -74,7 +78,7 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-primary/5 to-slate-100">
+    <div className="min-h-screen bg-slate-50">
       <Header 
         formData={formData} 
         onInputChange={handleInputChange} 
@@ -92,7 +96,36 @@ export default function Index() {
         onInputChange={handleInputChange}
         onSubmit={handleSubmit}
       />
-      <ScalingChecklist />
+      
+      {/* Checklist CTA Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-100 text-[#E8551B] rounded-full text-sm font-semibold mb-4">
+              <span className="text-2xl">🦊</span>
+              <span>Метод лисы</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+              Готов ли ваш бизнес к масштабированию?
+            </h2>
+            <p className="text-lg text-slate-600 mb-8">
+              Проверьте 7 ключевых признаков готовности процесса к росту. Узнайте, где ваша система теряет деньги.
+            </p>
+            <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
+              <DialogTrigger asChild>
+                <Button size="lg" className="bg-[#E8551B] hover:bg-[#E8551B]/90 text-white px-8 py-6 text-lg shadow-lg">
+                  <Icon name="Download" size={20} className="mr-2" />
+                  Скачать «Чек-лист: 7 признаков масштабирования»
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-[95vw] w-full max-h-[95vh] overflow-y-auto p-0">
+                <ScalingChecklist onClose={() => setIsChecklistOpen(false)} />
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
+      </section>
+      
       <SolutionCasesTools />
       <Footer />
       <ChatAssistant />

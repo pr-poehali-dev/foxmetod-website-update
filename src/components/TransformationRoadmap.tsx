@@ -135,7 +135,7 @@ export default function TransformationRoadmap({ formData, onInputChange, onSubmi
         {/* Interactive Roadmap */}
         <div className="max-w-6xl mx-auto relative">
           {/* Connection Line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-200 via-purple-200 via-orange-200 to-green-200 -translate-x-1/2 z-0"></div>
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-slate-300 -translate-x-1/2 z-0"></div>
 
           {/* Steps */}
           <div className="space-y-8 md:space-y-12">
@@ -241,7 +241,7 @@ export default function TransformationRoadmap({ formData, onInputChange, onSubmi
                     <span className="text-white font-bold text-lg md:text-2xl">{step.number}</span>
                   </div>
                   {idx < steps.length - 1 && (
-                    <div className="md:hidden absolute top-12 left-1/2 w-1 h-8 bg-gradient-to-b from-slate-300 to-slate-200 -translate-x-1/2"></div>
+                    <div className="md:hidden absolute top-12 left-1/2 w-1 h-8 bg-slate-300 -translate-x-1/2"></div>
                   )}
                 </div>
 

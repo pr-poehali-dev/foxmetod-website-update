@@ -149,10 +149,10 @@ export default function SolutionCasesTools() {
 
           <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
             {cases.map((caseItem, idx) => (
-              <Card key={idx} className="p-4 md:p-6 lg:p-8 bg-gradient-to-br from-slate-50 to-primary/5 hover:shadow-2xl transition-all duration-300 border-2 border-primary/10">
+              <Card key={idx} className="p-4 md:p-6 lg:p-8 bg-white hover:shadow-2xl transition-all duration-300 border-2 border-slate-200">
                 <div className="flex flex-col gap-4 md:gap-6">
                   <div className="flex items-start gap-3 md:gap-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary to-secondary text-white rounded-xl flex items-center justify-center font-bold text-lg md:text-xl flex-shrink-0 shadow-lg">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-[#E8551B] text-white rounded-xl flex items-center justify-center font-bold text-lg md:text-xl flex-shrink-0 shadow-lg">
                       {idx + 1}
                     </div>
                     <div className="flex-1">
@@ -161,7 +161,7 @@ export default function SolutionCasesTools() {
                     </div>
                   </div>
 
-                  <div className="p-3 md:p-4 lg:p-5 bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 rounded-lg shadow-sm">
+                  <div className="p-3 md:p-4 lg:p-5 bg-red-50 border-l-4 border-red-500 rounded-lg shadow-sm">
                     <div className="flex items-start gap-2 mb-2">
                       <Icon name="AlertTriangle" className="text-red-600 flex-shrink-0 mt-1" size={18} />
                       <div className="font-bold text-sm md:text-base text-red-900">Проблема:</div>
@@ -169,10 +169,10 @@ export default function SolutionCasesTools() {
                     <p className="text-sm md:text-base text-slate-700 leading-relaxed">{caseItem.problem}</p>
                   </div>
 
-                  <div className="p-3 md:p-4 lg:p-5 bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-secondary rounded-lg shadow-sm">
+                  <div className="p-3 md:p-4 lg:p-5 bg-blue-50 border-l-4 border-[#19374A] rounded-lg shadow-sm">
                     <div className="flex items-start gap-2 mb-3">
-                      <Icon name="Wrench" className="text-secondary flex-shrink-0 mt-1" size={18} />
-                      <div className="font-bold text-sm md:text-base text-secondary">Инструменты FOXMetoD:</div>
+                      <Icon name="Wrench" className="text-[#19374A] flex-shrink-0 mt-1" size={18} />
+                      <div className="font-bold text-sm md:text-base text-[#19374A]">Инструменты FOXMetoD:</div>
                     </div>
                     <div className="space-y-2">
                       {caseItem.tools.map((tool, i) => (
@@ -184,7 +184,7 @@ export default function SolutionCasesTools() {
                     </div>
                   </div>
 
-                  <div className="p-3 md:p-4 lg:p-5 bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 rounded-lg shadow-sm">
+                  <div className="p-3 md:p-4 lg:p-5 bg-green-50 border-l-4 border-green-500 rounded-lg shadow-sm">
                     <div className="flex items-start gap-2 mb-3">
                       <Icon name="TrendingUp" className="text-green-600 flex-shrink-0 mt-1" size={18} />
                       <div className="font-bold text-sm md:text-base text-green-900">Результаты:</div>
@@ -200,7 +200,7 @@ export default function SolutionCasesTools() {
                   </div>
 
                   {caseItem.quote && (
-                    <div className="p-3 md:p-4 lg:p-5 bg-gradient-to-r from-slate-100 to-slate-50 rounded-lg border-l-4 border-slate-400 italic">
+                    <div className="p-3 md:p-4 lg:p-5 bg-slate-100 rounded-lg border-l-4 border-slate-400 italic">
                       <Icon name="Quote" className="text-slate-400 mb-2" size={20} />
                       <p className="text-slate-700 text-sm md:text-base font-medium">«{caseItem.quote}»</p>
                     </div>

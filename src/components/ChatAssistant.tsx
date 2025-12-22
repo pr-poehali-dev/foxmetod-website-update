@@ -199,7 +199,7 @@ export default function ChatAssistant() {
           <Button
             onClick={() => setIsOpen(true)}
             size="lg"
-            className="rounded-full w-14 h-14 md:w-16 md:h-16 shadow-2xl bg-gradient-to-r from-primary to-secondary hover:scale-110 transition-all animate-pulse"
+            className="rounded-full w-14 h-14 md:w-16 md:h-16 shadow-2xl bg-[#E8551B] hover:bg-[#E8551B]/90 hover:scale-110 transition-all"
           >
             <Icon name="MessageCircle" size={24} className="md:block hidden" />
             <Icon name="MessageCircle" size={20} className="md:hidden" />
@@ -211,10 +211,10 @@ export default function ChatAssistant() {
       {isOpen && (
         <Card className="fixed inset-4 md:bottom-6 md:right-6 md:left-auto md:top-auto md:w-96 md:h-[600px] z-50 shadow-2xl flex flex-col border-2 border-primary/20">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-t-lg flex items-center justify-between">
+          <div className="bg-[#19374A] text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <Icon name="Bot" size={24} className="text-primary" />
+                <Icon name="Bot" size={24} className="text-[#E8551B]" />
               </div>
               <div>
                 <div className="font-bold">Ассистент FOXMetoD</div>
@@ -242,7 +242,7 @@ export default function ChatAssistant() {
                   className={`max-w-[85%] p-3 rounded-lg whitespace-pre-line ${
                     msg.isBot
                       ? 'bg-white text-slate-800 shadow-sm border border-slate-200'
-                      : 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                      : 'bg-[#E8551B] text-white shadow-md'
                   }`}
                 >
                   {msg.text}
@@ -266,7 +266,7 @@ export default function ChatAssistant() {
                 />
                 <Button
                   onClick={() => handleFormInput(inputValue)}
-                  className="w-full bg-gradient-to-r from-primary to-secondary"
+                  className="w-full bg-[#E8551B] hover:bg-[#E8551B]/90"
                   size="sm"
                   disabled={!inputValue.trim()}
                 >
@@ -292,7 +292,7 @@ export default function ChatAssistant() {
                 <div className="space-y-2">
                   <Button
                     onClick={startAssessment}
-                    className="w-full bg-gradient-to-r from-primary to-secondary text-sm"
+                    className="w-full bg-[#E8551B] hover:bg-[#E8551B]/90 text-sm"
                     size="sm"
                   >
                     <Icon name="Search" size={16} className="mr-2" />

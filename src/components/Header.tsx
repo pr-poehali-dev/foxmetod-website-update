@@ -202,7 +202,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                 <div className="pt-6 border-t-2 border-gray-300 space-y-4">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+                      <Button className="w-full bg-[#E8551B] hover:bg-[#E8551B]/90">
                         <Icon name="Search" size={18} className="mr-2" />
                         Оценить автономность
                       </Button>

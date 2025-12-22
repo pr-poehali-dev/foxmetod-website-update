@@ -6,6 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Icon from "@/components/ui/icon";
 
+interface ScalingChecklistProps {
+  onClose?: () => void;
+}
+
 interface ChecklistItem {
   id: number;
   title: string;
@@ -74,7 +78,7 @@ const checklistData: ChecklistItem[] = [
   }
 ];
 
-export default function ScalingChecklist() {
+export default function ScalingChecklist({ onClose }: ScalingChecklistProps = {}) {
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -170,8 +174,16 @@ export default function ScalingChecklist() {
   };
 
   return (
-    <section id="checklist" className="py-16 md:py-20 bg-slate-50">
-      <div className="container mx-auto px-4">
+    <div className="py-8 md:py-12 bg-white">
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Close button */}
+        {onClose && (
+          <div className="flex justify-end mb-4">
+            <Button variant="ghost" size="icon" onClick={onClose}>
+              <Icon name="X" size={24} />
+            </Button>
+          </div>
+        )}
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E8551B]/10 text-[#E8551B] rounded-full text-sm font-semibold mb-4">
@@ -385,6 +397,6 @@ export default function ScalingChecklist() {
           )}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

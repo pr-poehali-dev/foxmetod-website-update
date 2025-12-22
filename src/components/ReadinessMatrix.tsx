@@ -61,10 +61,10 @@ export default function ReadinessMatrix() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section className="py-20 bg-slate-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-semibold mb-4">
+          <div className="inline-block px-4 py-2 bg-blue-100 text-[#19374A] rounded-full text-sm font-semibold mb-4">
             <Icon name="BarChart3" size={16} className="inline mr-2" />
             Матрица готовности
           </div>
@@ -90,7 +90,11 @@ export default function ReadinessMatrix() {
             >
               <div className={`p-4 md:p-6 ${item.bgColor} rounded-t-lg`}>
                 <div className="flex items-center justify-center mb-3">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-lg ${
+                    item.level === 1 ? 'bg-red-500' :
+                    item.level === 2 ? 'bg-yellow-500' :
+                    'bg-green-500'
+                  }`}>
                     <Icon name={item.icon} className="text-white" size={28} />
                   </div>
                 </div>
@@ -136,7 +140,11 @@ export default function ReadinessMatrix() {
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 bg-white shadow-2xl border-2 border-primary/20">
               <div className="flex items-start gap-6 mb-6">
-                <div className={`w-16 h-16 bg-gradient-to-br ${levels[selectedLevel - 1].color} rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0`}>
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 ${
+                  levels[selectedLevel - 1].level === 1 ? 'bg-red-500' :
+                  levels[selectedLevel - 1].level === 2 ? 'bg-yellow-500' :
+                  'bg-green-500'
+                }`}>
                   <Icon name={levels[selectedLevel - 1].icon} className="text-white" size={32} />
                 </div>
                 <div className="flex-1">
