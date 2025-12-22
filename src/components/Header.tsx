@@ -47,11 +47,11 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
             <a href="#tools" className="text-gray-600 hover:text-primary transition-colors">Инструменты</a>
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="bg-primary hover:bg-primary/90">Получить консультацию</Button>
+                <Button className="bg-primary hover:bg-primary/90">Оценить автономность бизнеса</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
-                  <DialogTitle>Бесплатная диагностика бизнеса</DialogTitle>
+                  <DialogTitle>Оценить автономность бизнеса</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={onSubmit} className="space-y-4">
                   <div>
@@ -152,13 +152,13 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button className="w-full bg-primary hover:bg-primary/90">
-                        <Icon name="Send" size={18} className="mr-2" />
-                        Получить консультацию
+                        <Icon name="Search" size={18} className="mr-2" />
+                        Оценить автономность
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[500px]">
                       <DialogHeader>
-                        <DialogTitle>Заказать диагностику</DialogTitle>
+                        <DialogTitle>Оценить автономность бизнеса</DialogTitle>
                       </DialogHeader>
                       <form onSubmit={onSubmit} className="space-y-4">
                         <div>

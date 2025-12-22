@@ -269,12 +269,12 @@ export default function SolutionCasesTools() {
           <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white text-center shadow-2xl">
             <h3 className="text-3xl font-bold mb-4">Готовы превратить хаос в систему?</h3>
             <p className="text-xl mb-6 opacity-90">
-              Начните с бесплатной диагностики текущего состояния вашего бизнеса
+              Начните с бесплатной оценки автономности вашего бизнеса
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#diagnosis" className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:shadow-xl transition-all text-lg">
-                <Icon name="Rocket" size={20} className="mr-2" />
-                Заказать диагностику
+              <a href="#solution" className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:shadow-xl transition-all text-lg">
+                <Icon name="Search" size={20} className="mr-2" />
+                Оценить автономность бизнеса
               </a>
               <a href="https://t.me/official_xmetod" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-white rounded-xl font-semibold hover:bg-secondary/90 transition-all text-lg border-2 border-white/20">
                 <Icon name="MessageCircle" size={20} className="mr-2" />

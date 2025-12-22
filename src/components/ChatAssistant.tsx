@@ -7,7 +7,7 @@ export default function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
-      text: 'Здравствуйте! Я онлайн-ассистент FOXMetoD. Помогу ответить на вопросы о системной трансформации бизнеса.',
+      text: 'Здравствуйте! Я онлайн-ассистент FOXMetoD. Помогу оценить автономность вашего бизнеса и ответить на вопросы о системной трансформации.',
       isBot: true
     }
   ]);
@@ -26,13 +26,13 @@ export default function ChatAssistant() {
     setTimeout(() => {
       let response = '';
       if (question.includes('стоит')) {
-        response = 'Стоимость зависит от масштаба задач, от 1 млн руб. Точную оценку дадим после бесплатной диагностики.';
+        response = 'Стоимость зависит от масштаба задач и текущего уровня готовности, от 1 млн руб. Точную оценку дадим после бесплатной оценки автономности.';
       } else if (question.includes('долго')) {
-        response = 'Полная трансформация занимает 8-12 недель. Первые результаты видны уже через 2-3 недели.';
+        response = 'Полная трансформация одного процесса занимает 8-12 недель. Первые результаты видны уже через 2-3 недели после диагностики.';
       } else if (question.includes('гарантии')) {
-        response = 'Мы работаем по принципу продуктизированной услуги — фиксированный результат за фиксированный срок.';
+        response = 'Мы работаем по принципу продуктизированной услуги — фиксированный результат за фиксированный срок. Вы получаете работающий процесс, а не папку с документами.';
       } else {
-        response = 'Методология подходит для бизнеса с оборотом 200-800 млн руб. Напишите в Telegram @official_xmetod для уточнения.';
+        response = 'Методология подходит для бизнеса с оборотом 200-800 млн руб на Уровне 1 или 2 готовности. Напишите @official_xmetod для уточнения или закажите бесплатную оценку.';
       }
       
       setMessages(prev => [...prev, { text: response, isBot: true }]);
@@ -114,17 +114,25 @@ export default function ChatAssistant() {
                 </Button>
               ))}
             </div>
-            <a
-              href="https://t.me/official_xmetod"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full mt-3"
-            >
-              <Button className="w-full bg-gradient-to-r from-primary to-secondary">
-                <Icon name="Send" size={16} className="mr-2" />
-                Написать в Telegram
-              </Button>
-            </a>
+            <div className="pt-3 space-y-2">
+              <a href="#solution">
+                <Button className="w-full bg-gradient-to-r from-primary to-secondary text-sm" size="sm">
+                  <Icon name="Search" size={16} className="mr-2" />
+                  Оценить автономность
+                </Button>
+              </a>
+              <a
+                href="https://t.me/official_xmetod"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full"
+              >
+                <Button variant="outline" size="sm" className="w-full text-sm">
+                  <Icon name="Send" size={16} className="mr-2" />
+                  Telegram
+                </Button>
+              </a>
+            </div>
           </div>
         </Card>
       )}

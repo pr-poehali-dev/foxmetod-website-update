@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import ReadinessMatrix from "@/components/ReadinessMatrix";
 
 export default function DiagnosisSection() {
   const problems = [
@@ -63,6 +64,8 @@ export default function DiagnosisSection() {
           </div>
         </div>
       </div>
+
+      <ReadinessMatrix />
     </section>
   );
 }

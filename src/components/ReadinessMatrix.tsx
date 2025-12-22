@@ -1,0 +1,223 @@
+import { useState } from 'react';
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Icon from "@/components/ui/icon";
+
+export default function ReadinessMatrix() {
+  const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
+
+  const levels = [
+    {
+      level: 1,
+      title: "Ручное управление",
+      subtitle: "Всё держится на людях",
+      color: "from-red-500 to-orange-500",
+      bgColor: "bg-red-50",
+      borderColor: "border-red-300",
+      icon: "AlertCircle",
+      characteristics: [
+        "Регламенты есть, но их никто не читает",
+        "Ушёл ключевой сотрудник — встали продажи или производство",
+        "Собственник тратит 9+ часов в день на операционные задачи",
+        "Решения принимаются интуитивно, без опоры на данные",
+        "CRM используется как «записная книжка», не как система"
+      ],
+      solution: "Стандартизация 1 критического процесса за 8-12 недель"
+    },
+    {
+      level: 2,
+      title: "Переходный этап",
+      subtitle: "Попытки систематизации",
+      color: "from-yellow-500 to-amber-500",
+      bgColor: "bg-yellow-50",
+      borderColor: "border-yellow-300",
+      icon: "Construction",
+      characteristics: [
+        "CRM внедрена, но контроль требует участия собственника",
+        "Регламенты написаны, но не все их соблюдают",
+        "«Лоскутная» автоматизация — системы не связаны между собой",
+        "Часть процессов работает, часть — по старинке",
+        "Данные есть, но им не доверяют из-за разрозненности"
+      ],
+      solution: "Интеграция систем и перевод на автономное управление"
+    },
+    {
+      level: 3,
+      title: "Системный актив",
+      subtitle: "Бизнес работает без вас",
+      color: "from-green-500 to-emerald-500",
+      bgColor: "bg-green-50",
+      borderColor: "border-green-300",
+      icon: "CheckCircle",
+      characteristics: [
+        "Процессы работают автономно по регламентам",
+        "Отклонения видны на панелях управления в реальном времени",
+        "Новый сотрудник выходит на плановую мощность за 2 недели",
+        "Собственник управляет через показатели, а не через вмешательство",
+        "Система не позволяет совершить критическую ошибку"
+      ],
+      solution: "Масштабирование системы на другие процессы"
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <div className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-semibold mb-4">
+            <Icon name="BarChart3" size={16} className="inline mr-2" />
+            Матрица готовности
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            Определите уровень готовности вашего бизнеса
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Найдите себя в матрице. Это не диагноз, а точка отсчёта для роста
+          </p>
+        </div>
+
+        {/* Interactive Matrix */}
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mb-12">
+          {levels.map((item) => (
+            <Card
+              key={item.level}
+              className={`cursor-pointer transition-all duration-300 border-2 ${
+                selectedLevel === item.level
+                  ? `${item.borderColor} shadow-2xl scale-105`
+                  : 'border-transparent hover:shadow-xl'
+              }`}
+              onClick={() => setSelectedLevel(selectedLevel === item.level ? null : item.level)}
+            >
+              <div className={`p-6 ${item.bgColor} rounded-t-lg`}>
+                <div className="flex items-center justify-between mb-3">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                    <Icon name={item.icon} className="text-white" size={24} />
+                  </div>
+                  <div className={`text-3xl font-bold bg-gradient-to-br ${item.color} bg-clip-text text-transparent`}>
+                    {item.level}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-1">{item.title}</h3>
+                <p className="text-sm text-slate-600">{item.subtitle}</p>
+              </div>
+
+              <div className="p-6 bg-white">
+                <div className="space-y-3 mb-4">
+                  {item.characteristics.slice(0, 3).map((char, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <Icon 
+                        name={item.level === 3 ? "Check" : "Minus"} 
+                        size={16} 
+                        className={`mt-0.5 flex-shrink-0 ${
+                          item.level === 3 ? 'text-green-600' : 'text-slate-400'
+                        }`} 
+                      />
+                      <span className="text-sm text-slate-700">{char}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Button
+                  variant={selectedLevel === item.level ? "default" : "outline"}
+                  size="sm"
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedLevel(selectedLevel === item.level ? null : item.level);
+                  }}
+                >
+                  {selectedLevel === item.level ? 'Свернуть' : 'Подробнее'}
+                  <Icon name={selectedLevel === item.level ? "ChevronUp" : "ChevronDown"} size={16} className="ml-2" />
+                </Button>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Detailed View */}
+        {selectedLevel !== null && (
+          <div className="max-w-4xl mx-auto">
+            <Card className="p-8 bg-white shadow-2xl border-2 border-primary/20">
+              <div className="flex items-start gap-6 mb-6">
+                <div className={`w-16 h-16 bg-gradient-to-br ${levels[selectedLevel - 1].color} rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0`}>
+                  <Icon name={levels[selectedLevel - 1].icon} className="text-white" size={32} />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm text-slate-500 mb-1">Уровень {selectedLevel}</div>
+                  <h3 className="text-3xl font-bold text-slate-900 mb-2">{levels[selectedLevel - 1].title}</h3>
+                  <p className="text-lg text-slate-600">{levels[selectedLevel - 1].subtitle}</p>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <Icon name="List" size={20} className="text-primary" />
+                  Характерные признаки:
+                </h4>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {levels[selectedLevel - 1].characteristics.map((char, idx) => (
+                    <div key={idx} className="flex items-start gap-2 p-3 bg-slate-50 rounded-lg">
+                      <Icon 
+                        name={selectedLevel === 3 ? "CheckCircle" : "AlertCircle"} 
+                        size={18} 
+                        className={`mt-0.5 flex-shrink-0 ${
+                          selectedLevel === 3 ? 'text-green-600' : 'text-orange-600'
+                        }`} 
+                      />
+                      <span className="text-sm text-slate-700">{char}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={`p-5 rounded-xl border-l-4 ${
+                selectedLevel === 3 
+                  ? 'bg-green-50 border-green-500' 
+                  : 'bg-blue-50 border-blue-500'
+              }`}>
+                <div className="flex items-start gap-3">
+                  <Icon name="Lightbulb" size={24} className={selectedLevel === 3 ? 'text-green-600' : 'text-blue-600'} />
+                  <div>
+                    <h4 className="font-bold text-slate-900 mb-2">
+                      {selectedLevel === 3 ? 'Как поддерживать уровень:' : 'Как перейти на следующий уровень:'}
+                    </h4>
+                    <p className="text-slate-700">{levels[selectedLevel - 1].solution}</p>
+                  </div>
+                </div>
+              </div>
+
+              {selectedLevel < 3 && (
+                <div className="mt-6 text-center">
+                  <a href="#solution">
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-secondary">
+                      <Icon name="Rocket" size={20} className="mr-2" />
+                      Оценить автономность моего бизнеса
+                    </Button>
+                  </a>
+                </div>
+              )}
+            </Card>
+          </div>
+        )}
+
+        {/* CTA */}
+        {selectedLevel === null && (
+          <div className="text-center mt-12">
+            <p className="text-lg text-slate-600 mb-6">
+              Не уверены, на каком уровне находитесь?
+            </p>
+            <a href="#solution">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary">
+                <Icon name="Search" size={20} className="mr-2" />
+                Оценить автономность моего бизнеса
+              </Button>
+            </a>
+            <p className="text-sm text-slate-500 mt-3">
+              Бесплатная оценка уровня готовности за 30 минут
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
