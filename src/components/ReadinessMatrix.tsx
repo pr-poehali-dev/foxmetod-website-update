@@ -68,8 +68,8 @@ export default function ReadinessMatrix() {
             <Icon name="BarChart3" size={16} className="inline mr-2" />
             Матрица готовности
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Определите уровень готовности вашего бизнеса
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
+            На каком уровне ваш бизнес?
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Найдите себя в матрице. Это не диагноз, а точка отсчёта для роста
@@ -88,31 +88,28 @@ export default function ReadinessMatrix() {
               }`}
               onClick={() => setSelectedLevel(selectedLevel === item.level ? null : item.level)}
             >
-              <div className={`p-6 ${item.bgColor} rounded-t-lg`}>
-                <div className="flex items-center justify-between mb-3">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center shadow-lg`}>
-                    <Icon name={item.icon} className="text-white" size={24} />
-                  </div>
-                  <div className={`text-3xl font-bold bg-gradient-to-br ${item.color} bg-clip-text text-transparent`}>
-                    {item.level}
+              <div className={`p-4 md:p-6 ${item.bgColor} rounded-t-lg`}>
+                <div className="flex items-center justify-center mb-3">
+                  <div className={`w-14 h-14 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                    <Icon name={item.icon} className="text-white" size={28} />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-1">{item.title}</h3>
-                <p className="text-sm text-slate-600">{item.subtitle}</p>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1 text-center">{item.title}</h3>
+                <p className="text-xs md:text-sm text-slate-600 text-center">{item.subtitle}</p>
               </div>
 
-              <div className="p-6 bg-white">
-                <div className="space-y-3 mb-4">
+              <div className="p-4 md:p-6 bg-white">
+                <div className="space-y-2 md:space-y-3 mb-4">
                   {item.characteristics.slice(0, 3).map((char, idx) => (
                     <div key={idx} className="flex items-start gap-2">
                       <Icon 
                         name={item.level === 3 ? "Check" : "Minus"} 
-                        size={16} 
+                        size={14} 
                         className={`mt-0.5 flex-shrink-0 ${
                           item.level === 3 ? 'text-green-600' : 'text-slate-400'
                         }`} 
                       />
-                      <span className="text-sm text-slate-700">{char}</span>
+                      <span className="text-xs md:text-sm text-slate-700 leading-tight">{char}</span>
                     </div>
                   ))}
                 </div>
@@ -143,9 +140,8 @@ export default function ReadinessMatrix() {
                   <Icon name={levels[selectedLevel - 1].icon} className="text-white" size={32} />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm text-slate-500 mb-1">Уровень {selectedLevel}</div>
-                  <h3 className="text-3xl font-bold text-slate-900 mb-2">{levels[selectedLevel - 1].title}</h3>
-                  <p className="text-lg text-slate-600">{levels[selectedLevel - 1].subtitle}</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{levels[selectedLevel - 1].title}</h3>
+                  <p className="text-base md:text-lg text-slate-600">{levels[selectedLevel - 1].subtitle}</p>
                 </div>
               </div>
 
@@ -202,18 +198,18 @@ export default function ReadinessMatrix() {
 
         {/* CTA */}
         {selectedLevel === null && (
-          <div className="text-center mt-12">
-            <p className="text-lg text-slate-600 mb-6">
+          <div className="text-center mt-12 px-4">
+            <p className="text-base md:text-lg text-slate-600 mb-6">
               Не уверены, на каком уровне находитесь?
             </p>
             <a href="#solution">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary w-full md:w-auto">
                 <Icon name="Search" size={20} className="mr-2" />
-                Оценить автономность моего бизнеса
+                Оценить автономность
               </Button>
             </a>
-            <p className="text-sm text-slate-500 mt-3">
-              Бесплатная оценка уровня готовности за 30 минут
+            <p className="text-xs md:text-sm text-slate-500 mt-3">
+              Бесплатная оценка за 30 минут
             </p>
           </div>
         )}
