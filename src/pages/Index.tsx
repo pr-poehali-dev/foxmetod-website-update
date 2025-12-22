@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import LandingHero from "@/components/LandingHero";
 import DiagnosisSection from "@/components/DiagnosisSection";
+import TransformationRoadmap from "@/components/TransformationRoadmap";
 import SolutionCasesTools from "@/components/SolutionCasesTools";
 import Footer from "@/components/Footer";
 import ChatAssistant from "@/components/ChatAssistant";
@@ -72,6 +73,7 @@ export default function Index() {
       />
       <LandingHero scrollToSection={scrollToSection} />
       <DiagnosisSection />
+      <TransformationRoadmap />
       <SolutionCasesTools />
       <Footer />
       <ChatAssistant />

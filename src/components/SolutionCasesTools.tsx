@@ -3,33 +3,6 @@ import { Progress } from "@/components/ui/progress";
 import Icon from "@/components/ui/icon";
 
 export default function SolutionCasesTools() {
-  const phases = [
-    {
-      icon: "Search",
-      title: "Аудит и Диагностика",
-      duration: "1-2 недели",
-      desc: "Глубинный анализ текущего состояния: организационная структура, бизнес-процессы, зоны риска и потери"
-    },
-    {
-      icon: "GitBranch",
-      title: "Проектирование системы",
-      duration: "2-3 недели",
-      desc: "Разработка целевой модели: организационная структура, матрица ответственности, показатели эффективности, регламенты"
-    },
-    {
-      icon: "Wrench",
-      title: "Внедрение и настройка",
-      duration: "3-5 недель",
-      desc: "Запуск новых процессов, систем учёта, автоматизация повторяющихся задач, обучение команды"
-    },
-    {
-      icon: "TrendingUp",
-      title: "Стабилизация и рост",
-      duration: "2-3 недели",
-      desc: "Мониторинг результатов, корректировки, передача управления владельцу, подготовка к масштабированию"
-    }
-  ];
-
   const cases = [
     {
       company: "Дистрибьютор материалов для строительства",
@@ -163,48 +136,6 @@ export default function SolutionCasesTools() {
 
   return (
     <>
-      <section id="solution" className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Как проходит трансформация
-            </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Четыре последовательных этапа превращения хаоса в систему
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto space-y-6">
-            {phases.map((phase, idx) => (
-              <Card key={idx} className="p-8 bg-white hover:shadow-2xl transition-all duration-300 border-l-4 border-primary group">
-                <div className="flex flex-col md:flex-row items-start gap-6">
-                  <div className="flex items-center gap-6 flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <Icon name={phase.icon} className="text-white" size={28} />
-                    </div>
-                    <div className="text-center md:text-left">
-                      <div className="text-3xl font-bold text-primary mb-1">#{idx + 1}</div>
-                      <div className="text-sm text-slate-500 font-medium">{phase.duration}</div>
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3">{phase.title}</h3>
-                    <p className="text-slate-600 leading-relaxed text-lg">{phase.desc}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl shadow-lg hover:shadow-2xl transition-all">
-              <Icon name="CheckCircle" size={24} />
-              <span className="text-lg font-semibold">Итого: полная трансформация за 8-12 недель</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="cases" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
