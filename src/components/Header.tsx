@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
             <img 
               src="https://cdn.poehali.dev/files/FOXMetoD Black.png" 
               alt="FOXMetoD" 
-              className="h-8 md:h-10 w-auto"
+              className="h-6 md:h-7 w-auto animate-fade-in"
             />
           </div>
           
@@ -97,29 +97,29 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="phone">Телефон *</Label>
+                      <Label htmlFor="phone">Телефон</Label>
                       <Input
                         id="phone"
                         name="phone"
                         value={formData.phone || ''}
                         onChange={onInputChange}
                         placeholder="+7 (999) 123-45-67"
-                        required
                       />
                     </div>
                     <div>
-                      <Label htmlFor="telegram">Telegram</Label>
+                      <Label htmlFor="telegram">Telegram *</Label>
                       <Input
                         id="telegram"
                         name="telegram"
                         value={formData.telegram || ''}
                         onChange={onInputChange}
                         placeholder="@username"
+                        required
                       />
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="revenue">Текущий оборот (млн руб/год)</Label>
+                    <Label htmlFor="revenue">Текущий оборот (млн руб/год) *</Label>
                     <Input
                       id="revenue"
                       name="revenue"
@@ -127,6 +127,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                       onChange={onInputChange}
                       placeholder="200-800"
                       type="text"
+                      required
                     />
                   </div>
                   <div>
@@ -229,28 +230,28 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-phone">Телефон *</Label>
+                          <Label htmlFor="mobile-phone">Телефон</Label>
                           <Input
                             id="mobile-phone"
                             name="phone"
                             value={formData.phone || ''}
                             onChange={onInputChange}
                             placeholder="+7 (999) 123-45-67"
-                            required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-telegram">Telegram</Label>
+                          <Label htmlFor="mobile-telegram">Telegram *</Label>
                           <Input
                             id="mobile-telegram"
                             name="telegram"
                             value={formData.telegram || ''}
                             onChange={onInputChange}
                             placeholder="@username"
+                            required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-revenue">Текущий оборот (млн руб/год)</Label>
+                          <Label htmlFor="mobile-revenue">Текущий оборот (млн руб/год) *</Label>
                           <Input
                             id="mobile-revenue"
                             name="revenue"
@@ -258,6 +259,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                             onChange={onInputChange}
                             placeholder="200-800"
                             type="text"
+                            required
                           />
                         </div>
                         <div>

@@ -6,14 +6,16 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">F</span>
-              </div>
-              <span className="text-2xl font-bold">FOXMetoD</span>
+            <div className="mb-4">
+              <img 
+                src="https://cdn.poehali.dev/files/FOXMetoD Black.png" 
+                alt="FOXMetoD" 
+                className="h-8 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-gray-400">
-              Консалтинговое агентство для систематизации и развития бизнеса
+              Системная трансформация бизнеса.<br />
+              От хаоса к системе за 8-12 недель.
             </p>
           </div>
           <div>
