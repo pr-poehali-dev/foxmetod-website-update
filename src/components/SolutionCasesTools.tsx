@@ -6,6 +6,8 @@ export default function SolutionCasesTools() {
   const cases = [
     {
       company: "Дистрибьютор материалов для строительства",
+      niche: "Дистрибуция",
+      nicheIcon: "Package",
       revenue: "Серьёзные обороты",
       problem: "Управление «интуицией с завязанными глазами». Нет единой панели приборов. Отклонения замечают, когда уже поздно что-то менять.",
       tools: [
@@ -25,6 +27,8 @@ export default function SolutionCasesTools() {
     },
     {
       company: "Услуги для бизнеса",
+      niche: "B2B услуги",
+      nicheIcon: "Briefcase",
       revenue: "Операционный убыток 700 тыс/мес",
       problem: "Узкое горлышко: собственник тратит 9+ часов в день на операционные задачи. Без него всё останавливается.",
       tools: [
@@ -44,6 +48,8 @@ export default function SolutionCasesTools() {
     },
     {
       company: "Дистрибьютор оборудования для салонов красоты",
+      niche: "Салоны красоты",
+      nicheIcon: "Sparkles",
       revenue: "Падение эффективности каналов",
       problem: "Маркетинговый хаос: коммуникация разбросана по мессенджерам. Об убыточности каналов узнают постфактум, после слива бюджета.",
       tools: [
@@ -63,6 +69,8 @@ export default function SolutionCasesTools() {
     },
     {
       company: "Автосалон",
+      niche: "Автомобили",
+      nicheIcon: "Car",
       revenue: "Продажи на плато",
       problem: "Оклад убивает продажи: ТОП-менеджеры получают фиксированную зарплату. Премия 5-10% не стимулирует на результат.",
       tools: [
@@ -82,6 +90,8 @@ export default function SolutionCasesTools() {
     },
     {
       company: "Компания с высоким потоком заявок",
+      niche: "Высокий поток лидов",
+      nicheIcon: "TrendingUp",
       revenue: "Парадокс: рост лидов + падение продаж",
       problem: "Тонем в заявках: 9 исторических воронок в CRM, тысячи просроченных задач. Менеджеры выгорают, база лежит мёртвым грузом.",
       tools: [
@@ -149,60 +159,88 @@ export default function SolutionCasesTools() {
 
           <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
             {cases.map((caseItem, idx) => (
-              <Card key={idx} className="p-4 md:p-6 lg:p-8 bg-white hover:shadow-2xl transition-all duration-300 border-2 border-slate-200">
+              <Card key={idx} className="p-4 md:p-6 lg:p-8 bg-white hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 hover:border-[#E8551B]/30">
                 <div className="flex flex-col gap-4 md:gap-6">
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-[#E8551B] text-white rounded-xl flex items-center justify-center font-bold text-lg md:text-xl flex-shrink-0 shadow-lg">
+                  {/* Header with niche badge */}
+                  <div className="flex flex-col sm:flex-row items-start gap-3 md:gap-4">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-[#E8551B] text-white rounded-2xl flex items-center justify-center font-bold text-2xl md:text-3xl flex-shrink-0 shadow-lg">
                       {idx + 1}
                     </div>
                     <div className="flex-1">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-[#19374A] rounded-full text-xs font-semibold mb-2">
+                        <Icon name={caseItem.nicheIcon} size={14} />
+                        <span>{caseItem.niche}</span>
+                      </div>
                       <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-slate-900 mb-1 leading-tight">{caseItem.company}</h3>
-                      <div className="text-sm md:text-base text-primary font-semibold">{caseItem.revenue}</div>
+                      <div className="text-sm md:text-base text-[#E8551B] font-semibold flex items-center gap-2">
+                        <Icon name="TrendingDown" size={16} />
+                        {caseItem.revenue}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="p-3 md:p-4 lg:p-5 bg-red-50 border-l-4 border-red-500 rounded-lg shadow-sm">
-                    <div className="flex items-start gap-2 mb-2">
-                      <Icon name="AlertTriangle" className="text-red-600 flex-shrink-0 mt-1" size={18} />
-                      <div className="font-bold text-sm md:text-base text-red-900">Проблема:</div>
+                  {/* Problem */}
+                  <div className="p-4 md:p-5 lg:p-6 bg-red-50 border-2 border-red-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon name="AlertTriangle" className="text-white" size={18} />
+                      </div>
+                      <div className="font-bold text-base md:text-lg text-red-900">Проблема</div>
                     </div>
-                    <p className="text-sm md:text-base text-slate-700 leading-relaxed">{caseItem.problem}</p>
+                    <p className="text-sm md:text-base text-slate-700 leading-relaxed pl-11">{caseItem.problem}</p>
                   </div>
 
-                  <div className="p-3 md:p-4 lg:p-5 bg-blue-50 border-l-4 border-[#19374A] rounded-lg shadow-sm">
-                    <div className="flex items-start gap-2 mb-3">
-                      <Icon name="Wrench" className="text-[#19374A] flex-shrink-0 mt-1" size={18} />
-                      <div className="font-bold text-sm md:text-base text-[#19374A]">Инструменты FOXMetoD:</div>
+                  {/* Tools */}
+                  <div className="p-4 md:p-5 lg:p-6 bg-blue-50 border-2 border-blue-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-8 h-8 bg-[#19374A] rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon name="Wrench" className="text-white" size={18} />
+                      </div>
+                      <div className="font-bold text-base md:text-lg text-[#19374A]">Инструменты FOXMetoD</div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 pl-11">
                       {caseItem.tools.map((tool, i) => (
-                        <div key={i} className="flex items-start gap-2 bg-white/60 p-2 md:p-3 rounded-lg">
-                          <Icon name="Check" className="text-secondary mt-0.5 flex-shrink-0" size={16} />
+                        <div key={i} className="flex items-start gap-3 bg-white p-3 md:p-4 rounded-lg shadow-sm border border-blue-100">
+                          <div className="w-5 h-5 bg-[#7CB1C4] rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Icon name="Check" className="text-white" size={14} />
+                          </div>
                           <span className="text-slate-700 text-xs md:text-sm leading-relaxed">{tool}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="p-3 md:p-4 lg:p-5 bg-green-50 border-l-4 border-green-500 rounded-lg shadow-sm">
-                    <div className="flex items-start gap-2 mb-3">
-                      <Icon name="TrendingUp" className="text-green-600 flex-shrink-0 mt-1" size={18} />
-                      <div className="font-bold text-sm md:text-base text-green-900">Результаты:</div>
+                  {/* Results */}
+                  <div className="p-4 md:p-5 lg:p-6 bg-green-50 border-2 border-green-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon name="TrendingUp" className="text-white" size={18} />
+                      </div>
+                      <div className="font-bold text-base md:text-lg text-green-900">Результаты</div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="grid sm:grid-cols-2 gap-3 pl-11">
                       {caseItem.results.map((result, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                          <Icon name="CheckCircle" className="text-green-600 mt-0.5 flex-shrink-0" size={16} />
-                          <span className="text-slate-700 text-xs md:text-sm leading-relaxed">{result}</span>
+                        <div key={i} className="flex items-start gap-3 bg-white p-3 md:p-4 rounded-lg shadow-sm border border-green-100">
+                          <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Icon name="Check" className="text-white" size={12} />
+                          </div>
+                          <span className="text-slate-700 text-xs md:text-sm leading-relaxed font-medium">{result}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
+                  {/* Quote */}
                   {caseItem.quote && (
-                    <div className="p-3 md:p-4 lg:p-5 bg-slate-100 rounded-lg border-l-4 border-slate-400 italic">
-                      <Icon name="Quote" className="text-slate-400 mb-2" size={20} />
-                      <p className="text-slate-700 text-sm md:text-base font-medium">«{caseItem.quote}»</p>
+                    <div className="p-4 md:p-5 bg-slate-50 border-2 border-slate-200 rounded-xl shadow-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-[#E8551B] rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Icon name="Quote" className="text-white" size={16} />
+                        </div>
+                        <p className="text-sm md:text-base text-slate-700 italic leading-relaxed font-medium pt-1">
+                          «{caseItem.quote}»
+                        </p>
+                      </div>
                     </div>
                   )}
 
@@ -243,9 +281,13 @@ export default function SolutionCasesTools() {
         </div>
       </section>
 
-      <section id="tools" className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-secondary/10">
+      <section id="tools" className="py-16 md:py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 md:mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-100 text-[#E8551B] rounded-full text-sm font-semibold mb-4">
+              <Icon name="Wrench" size={16} />
+              <span>Инструментарий</span>
+            </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
               Инструменты трансформации
             </h2>
@@ -256,8 +298,8 @@ export default function SolutionCasesTools() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
             {tools.map((tool, idx) => (
-              <Card key={idx} className="p-4 md:p-6 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-primary/20">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-3 md:mb-4 shadow-lg">
+              <Card key={idx} className="p-4 md:p-6 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-slate-200 hover:border-[#E8551B]/30">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#E8551B] rounded-xl flex items-center justify-center mb-3 md:mb-4 shadow-lg">
                   <Icon name={tool.icon} className="text-white" size={24} />
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{tool.title}</h3>
@@ -266,13 +308,13 @@ export default function SolutionCasesTools() {
             ))}
           </div>
 
-          <div className="mt-12 md:mt-16 max-w-4xl mx-auto bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 md:p-8 text-white text-center shadow-2xl">
+          <div className="mt-12 md:mt-16 max-w-4xl mx-auto bg-[#E8551B] rounded-2xl p-6 md:p-8 text-white text-center shadow-2xl">
             <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Готовы превратить хаос в систему?</h3>
             <p className="text-base md:text-lg lg:text-xl mb-5 md:mb-6 opacity-90">
               Начните с бесплатной оценки автономности вашего бизнеса
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#solution" className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:shadow-xl transition-all text-lg">
+              <a href="#solution" className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#E8551B] rounded-xl font-semibold hover:shadow-xl transition-all text-lg">
                 <Icon name="Search" size={20} className="mr-2" />
                 Оценить автономность бизнеса
               </a>

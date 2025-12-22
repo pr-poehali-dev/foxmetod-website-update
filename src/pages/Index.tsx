@@ -114,12 +114,17 @@ export default function Index() {
             <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
               <DialogTrigger asChild>
                 <Button size="lg" className="bg-[#E8551B] hover:bg-[#E8551B]/90 text-white px-8 py-6 text-lg shadow-lg">
-                  <Icon name="Download" size={20} className="mr-2" />
-                  Скачать «Чек-лист: 7 признаков масштабирования»
+                  <Icon name="ClipboardCheck" size={20} className="mr-2" />
+                  Заполнить чек-лист и получить результат
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-[95vw] w-full max-h-[95vh] overflow-y-auto p-0">
-                <ScalingChecklist onClose={() => setIsChecklistOpen(false)} />
+                <ScalingChecklist 
+                  onClose={() => setIsChecklistOpen(false)}
+                  formData={formData}
+                  onInputChange={handleInputChange}
+                  onSubmit={handleSubmit}
+                />
               </DialogContent>
             </Dialog>
           </div>

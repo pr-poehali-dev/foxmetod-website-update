@@ -8,6 +8,18 @@ import Icon from "@/components/ui/icon";
 
 interface ScalingChecklistProps {
   onClose?: () => void;
+  formData?: {
+    name: string;
+    position?: string;
+    company: string;
+    phone?: string;
+    telegram?: string;
+    revenue?: string;
+    employees?: string;
+    description: string;
+  };
+  onInputChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onSubmit?: (e: React.FormEvent) => void;
 }
 
 interface ChecklistItem {
@@ -78,7 +90,7 @@ const checklistData: ChecklistItem[] = [
   }
 ];
 
-export default function ScalingChecklist({ onClose }: ScalingChecklistProps = {}) {
+export default function ScalingChecklist({ onClose, formData, onInputChange, onSubmit }: ScalingChecklistProps = {}) {
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -107,26 +119,32 @@ export default function ScalingChecklist({ onClose }: ScalingChecklistProps = {}
   const score = checkedItems.size;
 
   const getResultMessage = () => {
+    const unchecked = checklistData.filter(item => !checkedItems.has(item.id));
+    
     if (score === 7) {
       return {
         emoji: '🦊',
-        title: 'Уровень FOXMetoD',
-        text: 'Вы построили отличную систему. Жмите на газ!',
-        color: 'from-[#E8551B] to-[#E8551B]/80'
+        title: 'Уровень FOXMetoD — Перфектная система!',
+        text: 'Поздравляем! Вы построили идеальную систему для масштабирования. Ваш бизнес готов к росту. Можно жать на газ!',
+        feedback: 'У вас уже есть всё необходимое для массированного роста. Продолжайте поддерживать систему и наращивать обороты.'
       };
     } else if (score >= 5) {
       return {
         emoji: '⚠️',
-        title: '5–6 галочек',
-        text: 'Фундамент есть, но конструкцию может «зашатать». Укрепите слабые пункты перед стартом.',
-        color: 'from-[#7CB1C4] to-[#4D7085]'
+        title: 'Хорошая база, но есть риски',
+        text: `У вас ${score} из 7 признаков. Фундамент есть, но конструкция может «зашататься» под нагрузкой. Укрепите слабые места перед стартом масштабирования.`,
+        feedback: unchecked.length > 0 
+          ? `Критические пункты, которые стоит укрепить: ${unchecked.slice(0, 2).map(i => `«${i.title}»`).join(', ')}. Эти аспекты могут стать узкими местами при росте.`
+          : 'Рекомендуем провести полную диагностику с нашими экспертами.'
       };
     } else {
       return {
         emoji: '🛑',
-        title: 'Меньше 5',
-        text: 'Опасно. Масштабирование сейчас приведет к кассовому разрыву или потере качества. Вам нужно систематизировать хаос.',
-        color: 'from-red-500 to-red-600'
+        title: 'Опасно масштабировать сейчас',
+        text: `У вас только ${score} из 7 признаков. Масштабирование сейчас приведет к кассовому разрыву, потере качества или выгоранию команды. Сначала систематизируйте хаос.`,
+        feedback: unchecked.length > 0
+          ? `Критические проблемы: ${unchecked.slice(0, 3).map((i, idx) => `${idx + 1}) «${i.title}»`).join('; ')}. Без этих элементов рост будет неустойчивым. Рекомендуем начать с бесплатной диагностики.`
+          : 'Система нуждается в комплексной трансформации.'
       };
     }
   };
@@ -299,82 +317,121 @@ export default function ScalingChecklist({ onClose }: ScalingChecklistProps = {}
             <h3 className="text-2xl md:text-3xl font-bold mb-3">
               Ваш результат: {score} из 7
             </h3>
-            <div className="text-xl md:text-2xl font-bold mb-2">{result.title}</div>
-            <p className="text-base md:text-lg opacity-95 max-w-2xl mx-auto mb-6">
+            <div className="text-xl md:text-2xl font-bold mb-3">{result.title}</div>
+            <p className="text-base md:text-lg opacity-95 max-w-2xl mx-auto mb-4">
               {result.text}
             </p>
+            <div className="bg-white/20 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
+              <p className="text-sm md:text-base font-medium">
+                💡 {result.feedback}
+              </p>
+            </div>
 
-            {score < 7 && (
+            {score < 7 && formData && onSubmit && (
               <Dialog open={showLeadForm} onOpenChange={setShowLeadForm}>
                 <DialogTrigger asChild>
                   <Button 
                     size="lg" 
                     className="bg-white text-[#19374A] hover:bg-slate-50 font-bold text-base md:text-lg px-6 md:px-8 py-4 md:py-6 shadow-xl"
                   >
-                    <Icon name="Search" size={20} className="mr-2" />
-                    Получить детальный чек-лист
+                    <Icon name="Calendar" size={20} className="mr-2" />
+                    Записаться на оценку автономности
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
+                <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
-                    <DialogTitle className="text-2xl">Получите детальный чек-лист</DialogTitle>
+                    <DialogTitle className="text-2xl">Оценить автономность бизнеса</DialogTitle>
                     <p className="text-sm text-slate-600 mt-2">
-                      Мы отправим вам детальный план по укреплению слабых мест и запишем на бесплатный аудит процессов
+                      На встрече разберём "узкие места" в процессах и составим индивидуальное предложение по оптимизации 1 процесса. Ваш результат: {score}/7
                     </p>
                   </DialogHeader>
-                  <form onSubmit={handleLeadFormSubmit} className="space-y-4 mt-4">
-                    <div>
-                      <Label htmlFor="lead-name">ФИО *</Label>
-                      <Input
-                        id="lead-name"
-                        value={leadFormData.name}
-                        onChange={(e) => setLeadFormData({ ...leadFormData, name: e.target.value })}
-                        placeholder="Иван Иванов"
-                        required
-                      />
+                  <form onSubmit={onSubmit} className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="result-name">ФИО *</Label>
+                        <Input
+                          id="result-name"
+                          name="name"
+                          value={formData.name}
+                          onChange={onInputChange}
+                          placeholder="Иван Иванов"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="result-position">Должность *</Label>
+                        <Input
+                          id="result-position"
+                          name="position"
+                          value={formData.position || ''}
+                          onChange={onInputChange}
+                          placeholder="Генеральный директор"
+                          required
+                        />
+                      </div>
                     </div>
                     <div>
-                      <Label htmlFor="lead-company">Название компании *</Label>
+                      <Label htmlFor="result-company">Название компании *</Label>
                       <Input
-                        id="lead-company"
-                        value={leadFormData.company}
-                        onChange={(e) => setLeadFormData({ ...leadFormData, company: e.target.value })}
+                        id="result-company"
+                        name="company"
+                        value={formData.company}
+                        onChange={onInputChange}
                         placeholder="ООО Название"
                         required
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="lead-niche">Ниша/сфера деятельности *</Label>
-                      <Input
-                        id="lead-niche"
-                        value={leadFormData.niche}
-                        onChange={(e) => setLeadFormData({ ...leadFormData, niche: e.target.value })}
-                        placeholder="Например: дистрибуция, e-commerce, услуги"
-                        required
-                      />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="result-phone">Телефон</Label>
+                        <Input
+                          id="result-phone"
+                          name="phone"
+                          value={formData.phone || ''}
+                          onChange={onInputChange}
+                          placeholder="+7 (999) 123-45-67"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="result-telegram">Telegram *</Label>
+                        <Input
+                          id="result-telegram"
+                          name="telegram"
+                          value={formData.telegram || ''}
+                          onChange={onInputChange}
+                          placeholder="@username"
+                          required
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <Label htmlFor="lead-employees">Количество сотрудников *</Label>
-                      <Input
-                        id="lead-employees"
-                        value={leadFormData.employees}
-                        onChange={(e) => setLeadFormData({ ...leadFormData, employees: e.target.value })}
-                        placeholder="10-50"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="lead-telegram">Telegram для связи *</Label>
-                      <Input
-                        id="lead-telegram"
-                        value={leadFormData.telegram}
-                        onChange={(e) => setLeadFormData({ ...leadFormData, telegram: e.target.value })}
-                        placeholder="@username"
-                        required
-                      />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="result-revenue">Текущий оборот (млн/год) *</Label>
+                        <Input
+                          id="result-revenue"
+                          name="revenue"
+                          value={formData.revenue || ''}
+                          onChange={onInputChange}
+                          placeholder="200-800"
+                          type="text"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="result-employees">Кол-во сотрудников *</Label>
+                        <Input
+                          id="result-employees"
+                          name="employees"
+                          value={formData.employees || ''}
+                          onChange={onInputChange}
+                          placeholder="10-50"
+                          type="text"
+                          required
+                        />
+                      </div>
                     </div>
                     <Button type="submit" className="w-full bg-[#E8551B] hover:bg-[#E8551B]/90 text-white">
-                      Получить чек-лист и консультацию
+                      Отправить заявку
                     </Button>
                   </form>
                 </DialogContent>
