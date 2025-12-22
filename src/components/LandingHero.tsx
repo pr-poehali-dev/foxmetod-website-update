@@ -28,7 +28,7 @@ export default function LandingHero({ scrollToSection }: LandingHeroProps) {
       
       <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
         Превратите свой бизнес из зависимого от вас в масштабируемый актив. 
-        Проверенная методология для SMB с оборотом 200-800 млн рублей.
+        Проверенная методология для бизнеса с оборотом 200-800 млн рублей.
       </p>
       
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
