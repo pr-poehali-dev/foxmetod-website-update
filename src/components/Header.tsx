@@ -35,11 +35,12 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
     <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">F</span>
-            </div>
-            <span className="text-2xl font-bold text-gray-900">FOXMetoD</span>
+          <div className="flex items-center space-x-3">
+            <img 
+              src="https://cdn.poehali.dev/files/FOXMetoD Black.png" 
+              alt="FOXMetoD" 
+              className="h-8 md:h-10 w-auto"
+            />
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
