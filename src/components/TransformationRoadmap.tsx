@@ -88,12 +88,33 @@ export default function TransformationRoadmap() {
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Четыре последовательных этапа превращения хаоса в систему. От диагностики до передачи работающего процесса — <span className="text-primary font-semibold">за 8-12 недель</span>
           </p>
-          <div className="mt-6 inline-block px-6 py-3 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
-            <p className="text-sm text-slate-700">
-              <Icon name="Info" size={16} className="inline mr-2 text-blue-600" />
-              Перед этапами мы проводим <span className="font-semibold">бесплатную оценку автономности</span> (Шаг 0) — разбираем "узкие места" и составляем индивидуальное предложение
-            </p>
-          </div>
+          <p className="text-sm text-slate-500 mt-2">
+            <Icon name="ArrowDown" size={16} className="inline mr-1" />
+            Всё начинается с бесплатной оценки (Шаг 0)
+          </p>
+          <Card className="mt-8 max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300 shadow-lg">
+            <div className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0">
+                  <Icon name="Sparkles" className="text-white" size={28} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">ШАГ 0</span>
+                    <span className="text-sm font-semibold text-blue-600">• БЕСПЛАТНО • 30-60 минут</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">Оценка автономности бизнеса</h3>
+                  <p className="text-slate-700 mb-3">
+                    На встрече разберём "узкие места" в процессах и составим индивидуальное предложение по оптимизации 1 процесса с планом перехода
+                  </p>
+                  <div className="flex items-center gap-2 text-sm text-slate-600">
+                    <Icon name="CheckCircle" size={16} className="text-green-600" />
+                    <span>Без обязательств • Конкретный план действий</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {/* Interactive Roadmap */}
