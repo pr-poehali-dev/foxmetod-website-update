@@ -1,42 +1,187 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
+
+type MessageType = {
+  text: string;
+  isBot: boolean;
+};
+
+type FormStep = 'idle' | 'name' | 'position' | 'company' | 'telegram' | 'revenue' | 'description' | 'complete';
 
 export default function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<MessageType[]>([
     {
       text: 'Здравствуйте! Я онлайн-ассистент FOXMetoD. Помогу оценить автономность вашего бизнеса и ответить на вопросы о системной трансформации.',
       isBot: true
     }
   ]);
+  const [formStep, setFormStep] = useState<FormStep>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    position: '',
+    company: '',
+    telegram: '',
+    revenue: '',
+    description: ''
+  });
+  const [inputValue, setInputValue] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const quickQuestions = [
     'Сколько стоит трансформация?',
     'Как долго длится проект?',
     'Какие гарантии результата?',
-    'Подходит ли мой бизнес?'
+    'Подходит ли мой бизнес?',
+    'Оценить автономность'
   ];
 
+  const addMessage = (text: string, isBot: boolean) => {
+    setMessages(prev => [...prev, { text, isBot }]);
+  };
+
+  const startAssessment = () => {
+    setFormStep('name');
+    addMessage('Оценить автономность', false);
+    setTimeout(() => {
+      addMessage('Отлично! Давайте начнём оценку. На встрече разберём "узкие места" в процессах и составим индивидуальное предложение по оптимизации 1 процесса.\n\nПожалуйста, укажите ваше ФИО:', true);
+    }, 500);
+  };
+
+  const handleFormInput = (value: string) => {
+    if (!value.trim()) return;
+
+    addMessage(value, false);
+    setInputValue('');
+
+    setTimeout(() => {
+      switch (formStep) {
+        case 'name':
+          setFormData(prev => ({ ...prev, name: value }));
+          setFormStep('position');
+          addMessage('Спасибо! Теперь укажите вашу должность:', true);
+          break;
+        case 'position':
+          setFormData(prev => ({ ...prev, position: value }));
+          setFormStep('company');
+          addMessage('Отлично! Название компании:', true);
+          break;
+        case 'company':
+          setFormData(prev => ({ ...prev, company: value }));
+          setFormStep('telegram');
+          addMessage('Прекрасно! Ваш Telegram для связи (например, @username):', true);
+          break;
+        case 'telegram':
+          setFormData(prev => ({ ...prev, telegram: value }));
+          setFormStep('revenue');
+          addMessage('Отлично! Укажите текущий оборот компании (млн руб/год):', true);
+          break;
+        case 'revenue':
+          setFormData(prev => ({ ...prev, revenue: value }));
+          setFormStep('description');
+          addMessage('Последний вопрос! Опишите главные "узкие места" в процессах компании (нехватка времени, зависимость от вас, хаос в процессах и т.д.):', true);
+          break;
+        case 'description':
+          const finalData = { ...formData, description: value };
+          setFormData(finalData);
+          setFormStep('complete');
+          addMessage('Спасибо за информацию! Отправляю заявку...', true);
+          submitForm(finalData);
+          break;
+      }
+    }, 500);
+  };
+
+  const submitForm = async (data: typeof formData) => {
+    try {
+      const emailBody = `
+        Новая заявка на оценку автономности бизнеса - FOXMetoD (из чата)
+        
+        ФИО: ${data.name}
+        Должность: ${data.position}
+        Компания: ${data.company}
+        Telegram: ${data.telegram}
+        Текущий оборот: ${data.revenue} млн руб/год
+        
+        "Узкие места" в процессах:
+        ${data.description}
+      `;
+
+      const response = await fetch('https://functions.poehali.dev/57abd3e3-9316-4b67-9a6c-d6e47170f64d', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: 'sale@foxmetod.ru',
+          subject: 'Новая заявка на оценку автономности (чат)',
+          text: emailBody,
+          formData: data
+        })
+      });
+
+      if (response.ok) {
+        setTimeout(() => {
+          addMessage('✅ Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время через Telegram или по указанным контактам.\n\nЕсли нужна срочная консультация, пишите напрямую: @official_xmetod', true);
+          setFormStep('idle');
+          setFormData({ name: '', position: '', company: '', telegram: '', revenue: '', description: '' });
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          addMessage('❌ Произошла ошибка при отправке. Пожалуйста, напишите нам напрямую в Telegram: @official_xmetod', true);
+          setFormStep('idle');
+        }, 1000);
+      }
+    } catch (error) {
+      setTimeout(() => {
+        addMessage('❌ Произошла ошибка при отправке. Пожалуйста, напишите нам напрямую в Telegram: @official_xmetod', true);
+        setFormStep('idle');
+      }, 1000);
+    }
+  };
+
   const handleQuickQuestion = (question: string) => {
-    setMessages([...messages, { text: question, isBot: false }]);
+    if (question === 'Оценить автономность') {
+      startAssessment();
+      return;
+    }
+
+    addMessage(question, false);
     
-    // Simulate bot response
     setTimeout(() => {
       let response = '';
       if (question.includes('стоит')) {
-        response = 'Стоимость зависит от масштаба задач и текущего уровня готовности, от 1 млн руб. Точную оценку дадим после бесплатной оценки автономности.';
+        response = 'Стоимость трансформации зависит от масштаба задач и текущего уровня готовности бизнеса:\n\n• Стандартизация 1 процесса: от 1 млн руб\n• Полная трансформация отдела: от 2-3 млн руб\n• Комплексная трансформация: индивидуальный расчёт\n\nТочную оценку дадим после бесплатной диагностики. Хотите оценить автономность?';
       } else if (question.includes('долго')) {
-        response = 'Полная трансформация одного процесса занимает 8-12 недель. Первые результаты видны уже через 2-3 недели после диагностики.';
+        response = 'Полная трансформация одного процесса занимает 8-12 недель:\n\n📋 Диагностика и выбор: 1-2 недели\n🎯 Проектирование "To Be": 2-3 недели\n⚙️ Внедрение в цифру: 3-5 недель\n🚀 Запуск и передача: 2-3 недели\n\nПервые результаты видны уже через 2-3 недели после диагностики!';
       } else if (question.includes('гарантии')) {
-        response = 'Мы работаем по принципу продуктизированной услуги — фиксированный результат за фиксированный срок. Вы получаете работающий процесс, а не папку с документами.';
+        response = 'Мы работаем по принципу продуктизированной услуги:\n\n✅ Фиксированный результат за фиксированный срок\n✅ Вы получаете работающий процесс, а не папку с документами\n✅ Обученная команда и база знаний для масштабирования\n✅ Процесс, который работает без постоянного контроля собственника\n\nГарантируем передачу автономного процесса, иначе продолжаем работу до результата.';
+      } else if (question.includes('подходит')) {
+        response = 'Методология FOXMetoD подходит для:\n\n💼 Бизнес с оборотом 200-800 млн руб/год\n📊 Компании на Уровне 1-2 готовности (ручное управление или переходный этап)\n👤 Собственники, тратящие 9+ часов на операционку\n🔥 Бизнес с зависимостью от ключевых людей\n\nЕсли узнали себя хотя бы в 2 пунктах — это ваш случай! Хотите бесплатную оценку?';
       } else {
-        response = 'Методология подходит для бизнеса с оборотом 200-800 млн руб на Уровне 1 или 2 готовности. Напишите @official_xmetod для уточнения или закажите бесплатную оценку.';
+        response = 'Отличный вопрос! Для точного ответа лучше провести бесплатную оценку автономности (30-60 минут). Или напишите напрямую в Telegram: @official_xmetod';
       }
       
-      setMessages(prev => [...prev, { text: response, isBot: true }]);
+      addMessage(response, true);
     }, 800);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey && inputValue.trim()) {
+      e.preventDefault();
+      handleFormInput(inputValue);
+    }
   };
 
   return (
@@ -47,7 +192,7 @@ export default function ChatAssistant() {
           <Button
             onClick={() => setIsOpen(true)}
             size="lg"
-            className="rounded-full w-16 h-16 shadow-2xl bg-gradient-to-r from-primary to-secondary hover:scale-110 transition-all"
+            className="rounded-full w-16 h-16 shadow-2xl bg-gradient-to-r from-primary to-secondary hover:scale-110 transition-all animate-pulse"
           >
             <Icon name="MessageCircle" size={28} />
           </Button>
@@ -56,7 +201,7 @@ export default function ChatAssistant() {
 
       {/* Chat window */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[500px] z-50 shadow-2xl flex flex-col border-2 border-primary/20">
+        <Card className="fixed bottom-6 right-6 w-96 h-[600px] z-50 shadow-2xl flex flex-col border-2 border-primary/20">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -65,7 +210,7 @@ export default function ChatAssistant() {
               </div>
               <div>
                 <div className="font-bold">Ассистент FOXMetoD</div>
-                <div className="text-xs opacity-90">Онлайн</div>
+                <div className="text-xs opacity-90">Онлайн • Отвечает быстро</div>
               </div>
             </div>
             <Button
@@ -86,53 +231,79 @@ export default function ChatAssistant() {
                 className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg ${
+                  className={`max-w-[85%] p-3 rounded-lg whitespace-pre-line ${
                     msg.isBot
-                      ? 'bg-white text-slate-800 shadow-sm'
-                      : 'bg-gradient-to-r from-primary to-secondary text-white'
+                      ? 'bg-white text-slate-800 shadow-sm border border-slate-200'
+                      : 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
                   }`}
                 >
                   {msg.text}
                 </div>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
 
-          {/* Quick questions */}
-          <div className="p-4 border-t bg-white space-y-2">
-            <div className="text-xs text-slate-500 mb-2">Быстрые вопросы:</div>
-            <div className="grid grid-cols-2 gap-2">
-              {quickQuestions.map((q, idx) => (
+          {/* Input / Quick questions */}
+          <div className="p-4 border-t bg-white">
+            {formStep !== 'idle' && formStep !== 'complete' ? (
+              <div className="space-y-2">
+                <Input
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Введите ответ..."
+                  className="w-full"
+                  autoFocus
+                />
                 <Button
-                  key={idx}
-                  variant="outline"
+                  onClick={() => handleFormInput(inputValue)}
+                  className="w-full bg-gradient-to-r from-primary to-secondary"
                   size="sm"
-                  onClick={() => handleQuickQuestion(q)}
-                  className="text-xs h-auto py-2 px-2 hover:bg-primary/10"
+                  disabled={!inputValue.trim()}
                 >
-                  {q}
+                  Отправить
                 </Button>
-              ))}
-            </div>
-            <div className="pt-3 space-y-2">
-              <a href="#solution">
-                <Button className="w-full bg-gradient-to-r from-primary to-secondary text-sm" size="sm">
-                  <Icon name="Search" size={16} className="mr-2" />
-                  Оценить автономность
-                </Button>
-              </a>
-              <a
-                href="https://t.me/official_xmetod"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full"
-              >
-                <Button variant="outline" size="sm" className="w-full text-sm">
-                  <Icon name="Send" size={16} className="mr-2" />
-                  Telegram
-                </Button>
-              </a>
-            </div>
+              </div>
+            ) : (
+              <>
+                <div className="text-xs text-slate-500 mb-2">Быстрые вопросы:</div>
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  {quickQuestions.slice(0, 4).map((q, idx) => (
+                    <Button
+                      key={idx}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleQuickQuestion(q)}
+                      className="text-xs h-auto py-2 px-2 hover:bg-primary/10"
+                    >
+                      {q}
+                    </Button>
+                  ))}
+                </div>
+                <div className="space-y-2">
+                  <Button
+                    onClick={startAssessment}
+                    className="w-full bg-gradient-to-r from-primary to-secondary text-sm"
+                    size="sm"
+                  >
+                    <Icon name="Search" size={16} className="mr-2" />
+                    Оценить автономность
+                  </Button>
+                  <a
+                    href="https://t.me/official_xmetod"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full"
+                  >
+                    <Button variant="outline" size="sm" className="w-full text-sm">
+                      <Icon name="Send" size={16} className="mr-2" />
+                      Telegram
+                    </Button>
+                  </a>
+                </div>
+              </>
+            )}
           </div>
         </Card>
       )}

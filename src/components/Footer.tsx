@@ -8,9 +8,9 @@ const Footer: React.FC = () => {
           <div>
             <div className="mb-4">
               <img 
-                src="https://cdn.poehali.dev/files/FOXMetoD Black.png" 
+                src="https://cdn.poehali.dev/files/FOXMetoD White(1).png" 
                 alt="FOXMetoD" 
-                className="h-8 w-auto brightness-0 invert"
+                className="h-12 w-auto"
               />
             </div>
             <p className="text-gray-400">
