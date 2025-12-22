@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import LandingHero from "@/components/LandingHero";
 import DiagnosisSection from "@/components/DiagnosisSection";
+import ScalingChecklist from "@/components/ScalingChecklist";
 import TransformationRoadmap from "@/components/TransformationRoadmap";
 import SolutionCasesTools from "@/components/SolutionCasesTools";
 import Footer from "@/components/Footer";
@@ -15,6 +16,7 @@ export default function Index() {
     phone: '',
     telegram: '',
     revenue: '',
+    employees: '',
     description: ''
   });
 
@@ -42,6 +44,7 @@ export default function Index() {
         Телефон: ${formData.phone}
         Telegram: ${formData.telegram || 'не указан'}
         Текущий оборот: ${formData.revenue || 'не указан'} млн руб/год
+        Количество сотрудников: ${formData.employees || 'не указано'}
         
         "Узкие места" в процессах:
         ${formData.description}
@@ -60,7 +63,7 @@ export default function Index() {
 
       if (response.ok) {
         alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-        setFormData({ name: '', position: '', company: '', phone: '', telegram: '', revenue: '', description: '' });
+        setFormData({ name: '', position: '', company: '', phone: '', telegram: '', revenue: '', employees: '', description: '' });
       } else {
         alert('Ошибка отправки. Напишите нам напрямую в Telegram: @official_xmetod');
       }
@@ -79,6 +82,7 @@ export default function Index() {
       />
       <LandingHero scrollToSection={scrollToSection} />
       <DiagnosisSection />
+      <ScalingChecklist />
       <TransformationRoadmap />
       <SolutionCasesTools />
       <Footer />

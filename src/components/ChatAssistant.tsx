@@ -11,7 +11,7 @@ type MessageType = {
   isBot: boolean;
 };
 
-type FormStep = 'idle' | 'name' | 'position' | 'company' | 'telegram' | 'revenue' | 'description' | 'complete';
+type FormStep = 'idle' | 'name' | 'position' | 'company' | 'telegram' | 'revenue' | 'employees' | 'description' | 'complete';
 
 export default function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +28,7 @@ export default function ChatAssistant() {
     company: '',
     telegram: '',
     revenue: '',
+    employees: '',
     description: ''
   });
   const [inputValue, setInputValue] = useState('');
@@ -91,6 +92,11 @@ export default function ChatAssistant() {
           break;
         case 'revenue':
           setFormData(prev => ({ ...prev, revenue: value }));
+          setFormStep('employees');
+          addMessage('Хорошо! Укажите количество сотрудников (в штате + на аутсорсе):', true);
+          break;
+        case 'employees':
+          setFormData(prev => ({ ...prev, employees: value }));
           setFormStep('description');
           addMessage('Последний вопрос! Опишите главные "узкие места" в процессах компании (нехватка времени, зависимость от вас, хаос в процессах и т.д.):', true);
           break;
@@ -115,6 +121,7 @@ export default function ChatAssistant() {
         Компания: ${data.company}
         Telegram: ${data.telegram}
         Текущий оборот: ${data.revenue} млн руб/год
+        Количество сотрудников: ${data.employees}
         
         "Узкие места" в процессах:
         ${data.description}
@@ -135,7 +142,7 @@ export default function ChatAssistant() {
         setTimeout(() => {
           addMessage('✅ Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время через Telegram или по указанным контактам.\n\nЕсли нужна срочная консультация, пишите напрямую: @official_xmetod', true);
           setFormStep('idle');
-          setFormData({ name: '', position: '', company: '', telegram: '', revenue: '', description: '' });
+          setFormData({ name: '', position: '', company: '', telegram: '', revenue: '', employees: '', description: '' });
         }, 1000);
       } else {
         setTimeout(() => {

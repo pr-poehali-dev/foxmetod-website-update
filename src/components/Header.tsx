@@ -15,6 +15,7 @@ interface HeaderProps {
     phone?: string;
     telegram?: string;
     revenue?: string;
+    employees?: string;
     description: string;
   };
   onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -118,17 +119,31 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                       />
                     </div>
                   </div>
-                  <div>
-                    <Label htmlFor="revenue">Текущий оборот (млн руб/год) *</Label>
-                    <Input
-                      id="revenue"
-                      name="revenue"
-                      value={formData.revenue || ''}
-                      onChange={onInputChange}
-                      placeholder="200-800"
-                      type="text"
-                      required
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="revenue">Текущий оборот (млн/год) *</Label>
+                      <Input
+                        id="revenue"
+                        name="revenue"
+                        value={formData.revenue || ''}
+                        onChange={onInputChange}
+                        placeholder="200-800"
+                        type="text"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="employees">Кол-во сотрудников *</Label>
+                      <Input
+                        id="employees"
+                        name="employees"
+                        value={formData.employees || ''}
+                        onChange={onInputChange}
+                        placeholder="10-50"
+                        type="text"
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
                     <Label htmlFor="description">"Узкие места" в процессах компании *</Label>
@@ -255,13 +270,25 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-revenue">Текущий оборот (млн руб/год) *</Label>
+                          <Label htmlFor="mobile-revenue">Текущий оборот (млн/год) *</Label>
                           <Input
                             id="mobile-revenue"
                             name="revenue"
                             value={formData.revenue || ''}
                             onChange={onInputChange}
                             placeholder="200-800"
+                            type="text"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="mobile-employees">Кол-во сотрудников (в штате + аутсорс) *</Label>
+                          <Input
+                            id="mobile-employees"
+                            name="employees"
+                            value={formData.employees || ''}
+                            onChange={onInputChange}
+                            placeholder="10-50"
                             type="text"
                             required
                           />
