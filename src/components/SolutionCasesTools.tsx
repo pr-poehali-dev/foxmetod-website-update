@@ -32,37 +32,68 @@ export default function SolutionCasesTools() {
 
   const cases = [
     {
-      company: "Дистрибьютор стройматериалов",
-      revenue: "450 млн руб",
-      problem: "Хаос в закупках и логистике. Владелец работал 12 часов/день, склад простаивал.",
-      results: [
-        "Внедрили управленческий учёт + автоматизация закупок",
-        "Владелец сократил рабочий день до 4 часов",
-        "Прибыль выросла на 23% за 3 месяца"
+      company: "Услуги для бизнеса",
+      revenue: "Операционный убыток 700 тыс/мес",
+      problem: "Собственник работал 9+ часов/день в операционке. Финансовый разрыв угрожал закрытием бизнеса.",
+      tools: [
+        "Sales Playbook — единая «Книга продаж» со скриптами",
+        "CRM-система с автоматизацией воронки",
+        "Партнёрская программа для масштабирования лидогенерации"
       ],
-      metrics: { time: 75, profit: 23 }
+      results: [
+        "Выручка выросла с 170 тыс до 2 млн руб/мес за 4 месяца",
+        "Собственник освободил 5 часов/день для стратегии",
+        "Прибыль вышла в плюс, кассовый разрыв закрыт"
+      ],
+      metrics: { revenue: 1076, profit: 100 }
     },
     {
-      company: "Производство мебели",
-      revenue: "280 млн руб",
-      problem: "Производство срывало сроки. Каждый проект — уникальный кризис.",
-      results: [
-        "Стандартизировали процессы + регламенты",
-        "KPI для мастеров и отдела продаж",
-        "Сократили сроки производства с 45 до 28 дней"
+      company: "Дистрибьютор оборудования для салонов красоты",
+      revenue: "Падение эффективности каналов",
+      problem: "Маркетинг разбросан по мессенджерам. Узнавали об убыточности каналов постфактум, после слива бюджета.",
+      tools: [
+        "ОКМ (Отчёт по Ключевым Метрикам) — связь каждого рубля с выручкой",
+        "Единая панель управления маркетингом",
+        "Unit-экономика по каналам в реальном времени"
       ],
-      metrics: { time: 38, quality: 91 }
+      results: [
+        "Восстановили поток лидов до 1500-2000/мес",
+        "ROMI вырос благодаря прозрачности затрат",
+        "Маркетплейсы перестали «сливать» прибыль"
+      ],
+      metrics: { leads: 133, efficiency: 85 }
     },
     {
-      company: "IT-аутсорсинг компания",
-      revenue: "120 млн руб",
-      problem: "Текучка кадров 40%/год. Клиенты уходили вместе с менеджерами.",
-      results: [
-        "Построили систему управления проектами",
-        "Внедрили базу знаний и онбординг",
-        "Текучка упала до 12%, рост выручки +35%"
+      company: "Автосалон",
+      revenue: "Продажи на плато",
+      problem: "ТОП-менеджеры на окладах без реальной привязки к результату. Премии 5-10% не мотивировали на сверхусилия.",
+      tools: [
+        "ЦКП (Ценный Конечный Продукт) для каждой должности",
+        "KPI-диапазоны с тремя сценариями дохода",
+        "Сбалансированная модель ФОТ"
       ],
-      metrics: { retention: 70, growth: 35 }
+      results: [
+        "Вовлечённость персонала выросла на 11%",
+        "Прозрачность: сотрудники видят связь усилий и дохода",
+        "Стратегия компании синхронизировалась с карманами команды"
+      ],
+      metrics: { engagement: 11, alignment: 90 }
+    },
+    {
+      company: "Компания с высоким входящим потоком",
+      revenue: "Парадоксальное падение продаж при росте лидов",
+      problem: "9 исторических воронок в CRM, тысячи просроченных задач. Менеджеры выгорали, база лежала мёртвым грузом.",
+      tools: [
+        "Гигиена CRM: сегментация, система тегов, карта пути клиента",
+        "Папка адаптации и регламенты для новичков",
+        "Подготовка базы знаний для ИИ-квалификации (автоматизация 70% рутины)"
+      ],
+      results: [
+        "9 воронок упрощены до 3 прозрачных",
+        "Новый менеджер адаптирован быстро, показывает высокие результаты",
+        "Фундамент для роста продаж в 2 раза без раздувания штата"
+      ],
+      metrics: { simplification: 67, scalability: 200 }
     }
   ];
 
@@ -150,58 +181,73 @@ export default function SolutionCasesTools() {
               Кейсы трансформации
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Реальные результаты наших клиентов с измеримыми показателями
+              Реальные результаты клиентов с измеримыми показателями и инструментами FOXMetoD
             </p>
           </div>
 
           <div className="max-w-6xl mx-auto space-y-8">
             {cases.map((caseItem, idx) => (
               <Card key={idx} className="p-8 bg-gradient-to-br from-slate-50 to-primary/10 hover:shadow-2xl transition-all duration-300">
-                <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="flex-1">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0">
-                        {idx + 1}
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-1">{caseItem.company}</h3>
-                        <div className="text-primary font-semibold">Оборот: {caseItem.revenue}</div>
-                      </div>
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0">
+                      {idx + 1}
                     </div>
-
-                    <div className="mb-4 p-4 bg-red-50 border-l-4 border-red-400 rounded">
-                      <div className="font-semibold text-red-900 mb-1">Проблема:</div>
-                      <p className="text-slate-700">{caseItem.problem}</p>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-1">{caseItem.company}</h3>
+                      <div className="text-primary font-semibold">{caseItem.revenue}</div>
                     </div>
+                  </div>
 
+                  <div className="p-4 bg-red-50 border-l-4 border-red-400 rounded">
+                    <div className="font-semibold text-red-900 mb-1">Проблема:</div>
+                    <p className="text-slate-700">{caseItem.problem}</p>
+                  </div>
+
+                  <div className="p-4 bg-blue-50 border-l-4 border-secondary rounded">
+                    <div className="font-semibold text-secondary mb-2">Инструменты FOXMetoD:</div>
                     <div className="space-y-2">
-                      <div className="font-semibold text-green-900 mb-2">Результаты:</div>
-                      {caseItem.results.map((result, i) => (
+                      {caseItem.tools.map((tool, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <Icon name="CheckCircle" className="text-green-600 mt-0.5 flex-shrink-0" size={20} />
-                          <span className="text-slate-700">{result}</span>
+                          <Icon name="Wrench" className="text-secondary mt-0.5 flex-shrink-0" size={18} />
+                          <span className="text-slate-700 text-sm">{tool}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="lg:w-64 space-y-4">
-                    <div className="text-center font-semibold text-slate-700 mb-4">Ключевые метрики</div>
-                    {Object.entries(caseItem.metrics).map(([key, value]) => (
-                      <div key={key}>
-                        <div className="flex justify-between text-sm mb-2">
-                          <span className="text-slate-600 capitalize">
-                            {key === 'time' && 'Освобождение времени'}
-                            {key === 'profit' && 'Рост прибыли'}
-                            {key === 'quality' && 'Качество процессов'}
-                            {key === 'retention' && 'Удержание кадров'}
-                            {key === 'growth' && 'Рост выручки'}
-                          </span>
-                          <span className="font-bold text-primary">{value}%</span>
-                        </div>
-                        <Progress value={value} className="h-2" />
+                  <div className="space-y-2">
+                    <div className="font-semibold text-green-900 mb-2">Результаты:</div>
+                    {caseItem.results.map((result, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <Icon name="CheckCircle" className="text-green-600 mt-0.5 flex-shrink-0" size={20} />
+                        <span className="text-slate-700">{result}</span>
                       </div>
                     ))}
+                  </div>
+
+                  <div className="pt-4 border-t">
+                    <div className="text-center font-semibold text-slate-700 mb-4">Ключевые метрики</div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {Object.entries(caseItem.metrics).map(([key, value]) => (
+                        <div key={key}>
+                          <div className="flex justify-between text-sm mb-2">
+                            <span className="text-slate-600">
+                              {key === 'revenue' && 'Рост выручки'}
+                              {key === 'profit' && 'Выход в плюс'}
+                              {key === 'leads' && 'Рост лидов'}
+                              {key === 'efficiency' && 'Эффективность'}
+                              {key === 'engagement' && 'Вовлечённость'}
+                              {key === 'alignment' && 'Синхронизация'}
+                              {key === 'simplification' && 'Упрощение'}
+                              {key === 'scalability' && 'Масштабируемость'}
+                            </span>
+                            <span className="font-bold text-primary">+{value}%</span>
+                          </div>
+                          <Progress value={Math.min(value, 100)} className="h-2" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </Card>
