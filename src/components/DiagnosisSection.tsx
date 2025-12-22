@@ -40,10 +40,10 @@ export default function DiagnosisSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
           {problems.map((problem, idx) => (
-            <Card key={idx} className="p-4 md:p-6 lg:p-8 bg-gradient-to-br from-red-50 to-primary/10 border-primary/30 hover:shadow-xl transition-all duration-300">
+            <Card key={idx} className="p-4 md:p-6 lg:p-8 bg-white border-2 border-slate-200 hover:border-primary/40 hover:shadow-lg transition-all duration-300">
               <div className="flex items-start gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Icon name={problem.icon} className="text-primary" size={20} />
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-[#E8551B] rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Icon name={problem.icon} className="text-white" size={20} />
                 </div>
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2">{problem.title}</h3>
@@ -55,11 +55,11 @@ export default function DiagnosisSection() {
         </div>
 
         <div className="mt-12 md:mt-16 text-center max-w-3xl mx-auto">
-          <div className="bg-secondary/10 border-l-4 border-secondary p-4 md:p-6 rounded-lg">
+          <div className="bg-blue-50 border-l-4 border-[#19374A] p-4 md:p-6 rounded-lg">
             <p className="text-base md:text-lg text-slate-700 font-medium">
-              <Icon name="Lightbulb" size={18} className="inline mr-2 text-secondary" />
+              <Icon name="Lightbulb" size={18} className="inline mr-2 text-[#19374A]" />
               Если узнали хотя бы 2 из 4 — у вас классический кейс роста без систематизации. 
-              <span className="text-secondary font-semibold"> Это исправляется за 8-12 недель.</span>
+              <span className="text-[#19374A] font-semibold"> Это исправляется за 8-12 недель.</span>
             </p>
           </div>
         </div>

@@ -80,10 +80,19 @@ export default function Index() {
         onInputChange={handleInputChange} 
         onSubmit={handleSubmit} 
       />
-      <LandingHero scrollToSection={scrollToSection} />
+      <LandingHero 
+        scrollToSection={scrollToSection}
+        formData={formData}
+        onInputChange={handleInputChange}
+        onSubmit={handleSubmit}
+      />
       <DiagnosisSection />
+      <TransformationRoadmap 
+        formData={formData}
+        onInputChange={handleInputChange}
+        onSubmit={handleSubmit}
+      />
       <ScalingChecklist />
-      <TransformationRoadmap />
       <SolutionCasesTools />
       <Footer />
       <ChatAssistant />

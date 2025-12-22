@@ -170,7 +170,7 @@ export default function ScalingChecklist() {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <section id="checklist" className="py-16 md:py-20 bg-slate-50">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
@@ -195,8 +195,8 @@ export default function ScalingChecklist() {
               key={item.id}
               className={`overflow-hidden transition-all duration-300 border-2 ${
                 checkedItems.has(item.id) 
-                  ? 'border-[#E8551B] bg-gradient-to-r from-[#E8551B]/5 to-orange-50 shadow-lg' 
-                  : 'border-slate-200 hover:border-[#19374A]/30 hover:shadow-md'
+                  ? 'border-[#E8551B] bg-orange-50 shadow-lg' 
+                  : 'border-slate-200 hover:border-[#19374A]/30 hover:shadow-md bg-white'
               }`}
             >
               {/* Header */}
@@ -278,7 +278,11 @@ export default function ScalingChecklist() {
 
         {/* Results */}
         <div className="max-w-4xl mx-auto">
-          <Card className={`p-6 md:p-8 bg-gradient-to-r ${result.color} text-white text-center shadow-2xl border-0`}>
+          <Card className={`p-6 md:p-8 ${
+            score === 7 ? 'bg-[#E8551B] border-[#E8551B]' : 
+            score >= 5 ? 'bg-[#7CB1C4] border-[#7CB1C4]' : 
+            'bg-red-500 border-red-500'
+          } text-white text-center shadow-2xl border-2`}>
             <div className="text-5xl md:text-6xl mb-4">{result.emoji}</div>
             <h3 className="text-2xl md:text-3xl font-bold mb-3">
               Ваш результат: {score} из 7
@@ -293,10 +297,10 @@ export default function ScalingChecklist() {
                 <DialogTrigger asChild>
                   <Button 
                     size="lg" 
-                    className="bg-white text-[#E8551B] hover:bg-slate-100 font-bold text-lg px-8 py-6 shadow-xl"
+                    className="bg-white text-[#19374A] hover:bg-slate-50 font-bold text-base md:text-lg px-6 md:px-8 py-4 md:py-6 shadow-xl"
                   >
                     <Icon name="Search" size={20} className="mr-2" />
-                    Получить детальный чек-лист и план действий
+                    Получить детальный чек-лист
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">

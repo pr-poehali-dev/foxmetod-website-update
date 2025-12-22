@@ -1,8 +1,28 @@
 import { useState } from 'react';
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import Icon from "@/components/ui/icon";
 
-export default function TransformationRoadmap() {
+interface TransformationRoadmapProps {
+  formData: {
+    name: string;
+    position?: string;
+    company: string;
+    phone?: string;
+    telegram?: string;
+    revenue?: string;
+    employees?: string;
+    description: string;
+  };
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onSubmit: (e: React.FormEvent) => void;
+}
+
+export default function TransformationRoadmap({ formData, onInputChange, onSubmit }: TransformationRoadmapProps) {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   const steps = [
@@ -69,12 +89,7 @@ export default function TransformationRoadmap() {
   ];
 
   return (
-    <section id="solution" className="py-16 md:py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
-      </div>
+    <section id="solution" className="py-16 md:py-20 bg-white">
 
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
@@ -92,16 +107,16 @@ export default function TransformationRoadmap() {
             <Icon name="ArrowDown" size={14} className="inline mr-1" />
             Всё начинается с бесплатной оценки (Шаг 0)
           </p>
-          <Card className="mt-6 md:mt-8 max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300 shadow-lg">
+          <Card className="mt-6 md:mt-8 max-w-3xl mx-auto bg-blue-50 border-2 border-[#7CB1C4] shadow-lg">
             <div className="p-4 md:p-6">
               <div className="flex items-start gap-3 md:gap-4">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#7CB1C4] rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
                   <Icon name="Sparkles" className="text-white" size={24} />
                 </div>
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-2">
-                    <span className="px-2 md:px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full w-fit">ШАГ 0</span>
-                    <span className="text-xs md:text-sm font-semibold text-blue-600">• БЕСПЛАТНО • 30-60 минут</span>
+                    <span className="px-2 md:px-3 py-1 bg-[#7CB1C4] text-white text-xs font-bold rounded-full w-fit">ШАГ 0</span>
+                    <span className="text-xs md:text-sm font-semibold text-[#19374A]">• БЕСПЛАТНО • 30-60 минут</span>
                   </div>
                   <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2">Оценка автономности бизнеса</h3>
                   <p className="text-sm md:text-base text-slate-700 mb-3">
@@ -140,7 +155,12 @@ export default function TransformationRoadmap() {
                     onClick={() => setActiveStep(activeStep === idx ? null : idx)}
                   >
                     <div className="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
-                      <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br ${step.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0`}>
+                      <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ${
+                        step.number === 1 ? 'bg-[#7CB1C4]' :
+                        step.number === 2 ? 'bg-[#4D7085]' :
+                        step.number === 3 ? 'bg-[#E8551B]' :
+                        'bg-[#19374A]'
+                      }`}>
                         <Icon name={step.icon} className="text-white" size={20} />
                       </div>
                       <div className="flex-1">
@@ -209,7 +229,12 @@ export default function TransformationRoadmap() {
                 {/* Step Number Circle (Center) */}
                 <div className="relative z-10 flex-shrink-0">
                   <div
-                    className={`w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br ${step.color} shadow-xl flex items-center justify-center transition-all duration-500 ${
+                    className={`w-12 h-12 md:w-16 md:h-16 rounded-full ${
+                      step.number === 1 ? 'bg-[#7CB1C4]' :
+                      step.number === 2 ? 'bg-[#4D7085]' :
+                      step.number === 3 ? 'bg-[#E8551B]' :
+                      'bg-[#19374A]'
+                    } shadow-xl flex items-center justify-center transition-all duration-500 ${
                       activeStep === idx ? 'md:scale-125 shadow-2xl' : ''
                     }`}
                   >
@@ -228,8 +253,7 @@ export default function TransformationRoadmap() {
 
           {/* Result Banner */}
           <div className="mt-12 md:mt-16 relative">
-            <Card className="p-6 md:p-8 bg-gradient-to-r from-primary via-secondary to-primary text-white text-center shadow-2xl border-0 overflow-hidden">
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
+            <Card className="p-6 md:p-8 bg-[#E8551B] text-white text-center shadow-2xl border-2 border-[#E8551B]">
               <div className="relative z-10">
                 <Icon name="Target" size={36} className="mx-auto mb-3 md:mb-4 md:w-12 md:h-12" />
                 <h3 className="text-2xl md:text-3xl font-bold mb-3">Итого: полная трансформация за 8-12 недель</h3>
@@ -257,12 +281,121 @@ export default function TransformationRoadmap() {
 
         {/* CTA Section */}
         <div className="mt-12 md:mt-16 text-center px-4">
-          <a href="#diagnosis">
-            <button className="group px-6 md:px-8 py-3 md:py-4 bg-white text-primary rounded-xl font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 border-2 border-primary w-full md:w-auto">
-              <Icon name="Rocket" size={18} className="inline mr-2 group-hover:translate-x-1 transition-transform" />
-              Оценить автономность моего бизнеса
-            </button>
-          </a>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size="lg" className="px-6 md:px-8 py-3 md:py-4 text-base md:text-lg shadow-xl hover:shadow-2xl w-full md:w-auto">
+                <Icon name="Rocket" size={18} className="mr-2" />
+                Оценить автономность моего бизнеса
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>Оценить автономность бизнеса</DialogTitle>
+                <p className="text-sm text-slate-600 mt-2">
+                  На встрече разберём "узкие места" в процессах и составим индивидуальное предложение по оптимизации 1 процесса
+                </p>
+              </DialogHeader>
+              <form onSubmit={onSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="roadmap-name">ФИО *</Label>
+                    <Input
+                      id="roadmap-name"
+                      name="name"
+                      value={formData.name}
+                      onChange={onInputChange}
+                      placeholder="Иван Иванов"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="roadmap-position">Должность *</Label>
+                    <Input
+                      id="roadmap-position"
+                      name="position"
+                      value={formData.position || ''}
+                      onChange={onInputChange}
+                      placeholder="Генеральный директор"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="roadmap-company">Название компании *</Label>
+                  <Input
+                    id="roadmap-company"
+                    name="company"
+                    value={formData.company}
+                    onChange={onInputChange}
+                    placeholder="ООО Название"
+                    required
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="roadmap-phone">Телефон</Label>
+                    <Input
+                      id="roadmap-phone"
+                      name="phone"
+                      value={formData.phone || ''}
+                      onChange={onInputChange}
+                      placeholder="+7 (999) 123-45-67"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="roadmap-telegram">Telegram *</Label>
+                    <Input
+                      id="roadmap-telegram"
+                      name="telegram"
+                      value={formData.telegram || ''}
+                      onChange={onInputChange}
+                      placeholder="@username"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="roadmap-revenue">Текущий оборот (млн/год) *</Label>
+                    <Input
+                      id="roadmap-revenue"
+                      name="revenue"
+                      value={formData.revenue || ''}
+                      onChange={onInputChange}
+                      placeholder="200-800"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="roadmap-employees">Кол-во сотрудников *</Label>
+                    <Input
+                      id="roadmap-employees"
+                      name="employees"
+                      value={formData.employees || ''}
+                      onChange={onInputChange}
+                      placeholder="10-50"
+                      type="text"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="roadmap-description">"Узкие места" в процессах компании *</Label>
+                  <Textarea
+                    id="roadmap-description"
+                    name="description"
+                    value={formData.description}
+                    onChange={onInputChange}
+                    placeholder="Опишите главную боль: нехватка времени, зависимость от вас, хаос в процессах..."
+                    rows={3}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full">Отправить заявку</Button>
+              </form>
+            </DialogContent>
+          </Dialog>
           <p className="text-xs md:text-sm text-slate-500 mt-3">
             Бесплатная диагностика текущего уровня готовности
           </p>
