@@ -187,21 +187,22 @@ export default function ChatAssistant() {
   return (
     <>
       {/* Floating button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
         {!isOpen && (
           <Button
             onClick={() => setIsOpen(true)}
             size="lg"
-            className="rounded-full w-16 h-16 shadow-2xl bg-gradient-to-r from-primary to-secondary hover:scale-110 transition-all animate-pulse"
+            className="rounded-full w-14 h-14 md:w-16 md:h-16 shadow-2xl bg-gradient-to-r from-primary to-secondary hover:scale-110 transition-all animate-pulse"
           >
-            <Icon name="MessageCircle" size={28} />
+            <Icon name="MessageCircle" size={24} className="md:block hidden" />
+            <Icon name="MessageCircle" size={20} className="md:hidden" />
           </Button>
         )}
       </div>
 
       {/* Chat window */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[600px] z-50 shadow-2xl flex flex-col border-2 border-primary/20">
+        <Card className="fixed inset-4 md:bottom-6 md:right-6 md:left-auto md:top-auto md:w-96 md:h-[600px] z-50 shadow-2xl flex flex-col border-2 border-primary/20">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-2">

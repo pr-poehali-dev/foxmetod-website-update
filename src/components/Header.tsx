@@ -154,36 +154,40 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                 <Icon name="Menu" size={24} />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col gap-6 mt-8">
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] overflow-y-auto">
+              <nav className="flex flex-col gap-4 mt-8 pb-6">
                 <button
                   onClick={() => scrollToSection('diagnosis')}
-                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary hover:bg-primary/5 transition-all p-3 rounded-lg"
                 >
-                  Диагностика
+                  Уровень автономности
                 </button>
+                <div className="border-t border-gray-200"></div>
                 <button
                   onClick={() => scrollToSection('solution')}
-                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary hover:bg-primary/5 transition-all p-3 rounded-lg"
                 >
                   Решение
                 </button>
+                <div className="border-t border-gray-200"></div>
                 <button
                   onClick={() => scrollToSection('cases')}
-                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary hover:bg-primary/5 transition-all p-3 rounded-lg"
                 >
                   Кейсы
                 </button>
+                <div className="border-t border-gray-200"></div>
                 <button
                   onClick={() => scrollToSection('tools')}
-                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary hover:bg-primary/5 transition-all p-3 rounded-lg"
                 >
                   Инструменты
                 </button>
-                <div className="pt-4 border-t">
+                
+                <div className="pt-6 border-t-2 border-gray-300 space-y-4">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full bg-primary hover:bg-primary/90">
+                      <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90">
                         <Icon name="Search" size={18} className="mr-2" />
                         Оценить автономность
                       </Button>
@@ -278,6 +282,22 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                       </form>
                     </DialogContent>
                   </Dialog>
+                  
+                  <div className="space-y-3 pt-4 border-t">
+                    <h4 className="text-sm font-semibold text-gray-600">Контакты</h4>
+                    <a href="tel:+79222904787" className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors">
+                      <Icon name="Phone" size={16} />
+                      <span>+7 922 290 4787</span>
+                    </a>
+                    <a href="mailto:sale@foxmetod.ru" className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors">
+                      <Icon name="Mail" size={16} />
+                      <span>sale@foxmetod.ru</span>
+                    </a>
+                    <a href="https://t.me/official_xmetod" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors">
+                      <Icon name="Send" size={16} />
+                      <span>@official_xmetod</span>
+                    </a>
+                  </div>
                 </div>
               </nav>
             </SheetContent>
