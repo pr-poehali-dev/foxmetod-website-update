@@ -1,0 +1,23 @@
+{
+  "tests": [
+    {
+      "name": "Test email submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "formData": {
+          "name": "Иван Тестовый",
+          "contact": "@testuser",
+          "company": "ООО Тест",
+          "revenue": "300",
+          "description": "Тестовая заявка"
+        }
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ interface HeaderProps {
     name: string;
     contact: string;
     company: string;
+    revenue?: string;
     description: string;
   };
   onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -50,46 +51,61 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
-                  <DialogTitle>Заказать диагностику</DialogTitle>
+                  <DialogTitle>Бесплатная диагностика бизнеса</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={onSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="name">Ваше имя</Label>
+                    <Label htmlFor="name">Ваше имя *</Label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={onInputChange}
+                      placeholder="Иван Иванов"
                       required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="contact">Телефон/Telegram для связи</Label>
+                    <Label htmlFor="contact">Telegram или телефон *</Label>
                     <Input
                       id="contact"
                       name="contact"
                       value={formData.contact}
                       onChange={onInputChange}
+                      placeholder="@username или +7 (999) 123-45-67"
                       required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="company">Название компании</Label>
+                    <Label htmlFor="company">Название компании и ниша *</Label>
                     <Input
                       id="company"
                       name="company"
                       value={formData.company}
                       onChange={onInputChange}
+                      placeholder="ООО Название, дистрибьютор"
                       required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="description">Опишите текущую ситуацию в бизнесе</Label>
+                    <Label htmlFor="revenue">Текущий оборот компании (млн руб/год)</Label>
+                    <Input
+                      id="revenue"
+                      name="revenue"
+                      value={formData.revenue || ''}
+                      onChange={onInputChange}
+                      placeholder="200-800"
+                      type="text"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="description">Основная проблема в бизнесе *</Label>
                     <Textarea
                       id="description"
                       name="description"
                       value={formData.description}
                       onChange={onInputChange}
+                      placeholder="Опишите главную боль: нехватка времени, зависимость от вас, хаос в процессах..."
                       rows={3}
                       required
                     />
@@ -146,42 +162,57 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                       </DialogHeader>
                       <form onSubmit={onSubmit} className="space-y-4">
                         <div>
-                          <Label htmlFor="mobile-name">Ваше имя</Label>
+                          <Label htmlFor="mobile-name">Ваше имя *</Label>
                           <Input
                             id="mobile-name"
                             name="name"
                             value={formData.name}
                             onChange={onInputChange}
+                            placeholder="Иван Иванов"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-contact">Телефон/Telegram для связи</Label>
+                          <Label htmlFor="mobile-contact">Telegram или телефон *</Label>
                           <Input
                             id="mobile-contact"
                             name="contact"
                             value={formData.contact}
                             onChange={onInputChange}
+                            placeholder="@username или +7 (999) 123-45-67"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-company">Название компании</Label>
+                          <Label htmlFor="mobile-company">Название компании и ниша *</Label>
                           <Input
                             id="mobile-company"
                             name="company"
                             value={formData.company}
                             onChange={onInputChange}
+                            placeholder="ООО Название, дистрибьютор"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-description">Опишите текущую ситуацию в бизнесе</Label>
+                          <Label htmlFor="mobile-revenue">Текущий оборот компании (млн руб/год)</Label>
+                          <Input
+                            id="mobile-revenue"
+                            name="revenue"
+                            value={formData.revenue || ''}
+                            onChange={onInputChange}
+                            placeholder="200-800"
+                            type="text"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="mobile-description">Основная проблема в бизнесе *</Label>
                           <Textarea
                             id="mobile-description"
                             name="description"
                             value={formData.description}
                             onChange={onInputChange}
+                            placeholder="Опишите главную боль: нехватка времени, зависимость от вас, хаос в процессах..."
                             rows={3}
                             required
                           />

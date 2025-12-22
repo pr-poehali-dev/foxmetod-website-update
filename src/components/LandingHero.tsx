@@ -20,9 +20,9 @@ export default function LandingHero({ scrollToSection }: LandingHeroProps) {
       </div>
       
       <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-        От хаоса к системе.<br />
+        От хаоса к системе<br />
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-          За 8-12 недель.
+          За 8-12 недель
         </span>
       </h1>
       
