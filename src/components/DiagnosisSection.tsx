@@ -39,10 +39,10 @@ export default function DiagnosisSection() {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {problems.map((problem, idx) => (
-            <Card key={idx} className="p-8 bg-gradient-to-br from-red-50 to-orange-50 border-red-200 hover:shadow-xl transition-all duration-300">
+            <Card key={idx} className="p-8 bg-gradient-to-br from-red-50 to-primary/10 border-primary/30 hover:shadow-xl transition-all duration-300">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Icon name={problem.icon} className="text-red-600" size={24} />
+                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Icon name={problem.icon} className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 mb-2">{problem.title}</h3>
@@ -54,11 +54,11 @@ export default function DiagnosisSection() {
         </div>
 
         <div className="mt-16 text-center max-w-3xl mx-auto">
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
+          <div className="bg-secondary/10 border-l-4 border-secondary p-6 rounded-lg">
             <p className="text-lg text-slate-700 font-medium">
-              <Icon name="Lightbulb" size={20} className="inline mr-2 text-blue-600" />
+              <Icon name="Lightbulb" size={20} className="inline mr-2 text-secondary" />
               Если узнали хотя бы 2 из 4 — у вас классический кейс роста без систематизации. 
-              <span className="text-blue-600 font-semibold"> Это исправляется за 8-12 недель.</span>
+              <span className="text-secondary font-semibold"> Это исправляется за 8-12 недель.</span>
             </p>
           </div>
         </div>

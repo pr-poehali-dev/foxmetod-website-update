@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import Icon from '@/components/ui/icon';
 
 interface HeaderProps {
   formData: {
@@ -17,6 +19,15 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    setIsMobileMenuOpen(false);
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+  };
+
   return (
     <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
@@ -27,6 +38,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
             </div>
             <span className="text-2xl font-bold text-gray-900">FOXMetoD</span>
           </div>
+          
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#diagnosis" className="text-gray-600 hover:text-primary transition-colors">Диагностика</a>
             <a href="#solution" className="text-gray-600 hover:text-primary transition-colors">Решение</a>
@@ -87,6 +99,101 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
               </DialogContent>
             </Dialog>
           </nav>
+
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Icon name="Menu" size={24} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <nav className="flex flex-col gap-6 mt-8">
+                <button
+                  onClick={() => scrollToSection('diagnosis')}
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                >
+                  Диагностика
+                </button>
+                <button
+                  onClick={() => scrollToSection('solution')}
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                >
+                  Решение
+                </button>
+                <button
+                  onClick={() => scrollToSection('cases')}
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                >
+                  Кейсы
+                </button>
+                <button
+                  onClick={() => scrollToSection('tools')}
+                  className="text-left text-lg font-medium text-gray-700 hover:text-primary transition-colors"
+                >
+                  Инструменты
+                </button>
+                <div className="pt-4 border-t">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full bg-primary hover:bg-primary/90">
+                        <Icon name="Send" size={18} className="mr-2" />
+                        Получить консультацию
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[500px]">
+                      <DialogHeader>
+                        <DialogTitle>Заказать диагностику</DialogTitle>
+                      </DialogHeader>
+                      <form onSubmit={onSubmit} className="space-y-4">
+                        <div>
+                          <Label htmlFor="mobile-name">Ваше имя</Label>
+                          <Input
+                            id="mobile-name"
+                            name="name"
+                            value={formData.name}
+                            onChange={onInputChange}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="mobile-contact">Телефон/Telegram для связи</Label>
+                          <Input
+                            id="mobile-contact"
+                            name="contact"
+                            value={formData.contact}
+                            onChange={onInputChange}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="mobile-company">Название компании</Label>
+                          <Input
+                            id="mobile-company"
+                            name="company"
+                            value={formData.company}
+                            onChange={onInputChange}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="mobile-description">Опишите текущую ситуацию в бизнесе</Label>
+                          <Textarea
+                            id="mobile-description"
+                            name="description"
+                            value={formData.description}
+                            onChange={onInputChange}
+                            rows={3}
+                            required
+                          />
+                        </div>
+                        <Button type="submit" className="w-full">Отправить заявку</Button>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

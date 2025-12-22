@@ -101,7 +101,7 @@ export default function SolutionCasesTools() {
 
   return (
     <>
-      <section id="solution" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <section id="solution" className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
@@ -114,14 +114,14 @@ export default function SolutionCasesTools() {
 
           <div className="max-w-5xl mx-auto space-y-6">
             {phases.map((phase, idx) => (
-              <Card key={idx} className="p-8 bg-white hover:shadow-2xl transition-all duration-300 border-l-4 border-blue-600">
+              <Card key={idx} className="p-8 bg-white hover:shadow-2xl transition-all duration-300 border-l-4 border-primary">
                 <div className="flex flex-col md:flex-row items-start gap-6">
                   <div className="flex items-center gap-6 flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
                       <Icon name={phase.icon} className="text-white" size={28} />
                     </div>
                     <div className="text-center md:text-left">
-                      <div className="text-3xl font-bold text-blue-600 mb-1">#{idx + 1}</div>
+                      <div className="text-3xl font-bold text-primary mb-1">#{idx + 1}</div>
                       <div className="text-sm text-slate-500 font-medium">{phase.duration}</div>
                     </div>
                   </div>
@@ -135,7 +135,7 @@ export default function SolutionCasesTools() {
           </div>
 
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl shadow-lg">
+            <div className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl shadow-lg">
               <Icon name="CheckCircle" size={24} />
               <span className="text-lg font-semibold">Итого: полная трансформация за 8-12 недель</span>
             </div>
@@ -156,16 +156,16 @@ export default function SolutionCasesTools() {
 
           <div className="max-w-6xl mx-auto space-y-8">
             {cases.map((caseItem, idx) => (
-              <Card key={idx} className="p-8 bg-gradient-to-br from-slate-50 to-blue-50 hover:shadow-2xl transition-all duration-300">
+              <Card key={idx} className="p-8 bg-gradient-to-br from-slate-50 to-primary/10 hover:shadow-2xl transition-all duration-300">
                 <div className="flex flex-col lg:flex-row gap-8">
                   <div className="flex-1">
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0">
+                      <div className="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0">
                         {idx + 1}
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-slate-900 mb-1">{caseItem.company}</h3>
-                        <div className="text-blue-600 font-semibold">Оборот: {caseItem.revenue}</div>
+                        <div className="text-primary font-semibold">Оборот: {caseItem.revenue}</div>
                       </div>
                     </div>
 
@@ -197,7 +197,7 @@ export default function SolutionCasesTools() {
                             {key === 'retention' && 'Удержание кадров'}
                             {key === 'growth' && 'Рост выручки'}
                           </span>
-                          <span className="font-bold text-blue-600">{value}%</span>
+                          <span className="font-bold text-primary">{value}%</span>
                         </div>
                         <Progress value={value} className="h-2" />
                       </div>
@@ -210,7 +210,7 @@ export default function SolutionCasesTools() {
         </div>
       </section>
 
-      <section id="tools" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section id="tools" className="py-20 bg-gradient-to-br from-slate-50 to-secondary/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
@@ -224,7 +224,7 @@ export default function SolutionCasesTools() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {tools.map((tool, idx) => (
               <Card key={idx} className="p-6 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4 shadow-lg">
                   <Icon name={tool.icon} className="text-white" size={24} />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{tool.title}</h3>
@@ -233,17 +233,17 @@ export default function SolutionCasesTools() {
             ))}
           </div>
 
-          <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white text-center shadow-2xl">
+          <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white text-center shadow-2xl">
             <h3 className="text-3xl font-bold mb-4">Готовы превратить хаос в систему?</h3>
             <p className="text-xl mb-6 opacity-90">
               Начните с бесплатной диагностики текущего состояния вашего бизнеса
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#diagnosis" className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold hover:shadow-xl transition-all text-lg">
+              <a href="#diagnosis" className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:shadow-xl transition-all text-lg">
                 <Icon name="Rocket" size={20} className="mr-2" />
                 Заказать диагностику
               </a>
-              <a href="https://t.me/natalyatomasheva" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-4 bg-blue-700 text-white rounded-xl font-semibold hover:bg-blue-800 transition-all text-lg border-2 border-white/20">
+              <a href="https://t.me/natalyatomasheva" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-white rounded-xl font-semibold hover:bg-secondary/90 transition-all text-lg border-2 border-white/20">
                 <Icon name="MessageCircle" size={20} className="mr-2" />
                 Написать в Telegram
               </a>
