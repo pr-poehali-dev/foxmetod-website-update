@@ -23,7 +23,7 @@ export default function TransformationRoadmap() {
     },
     {
       number: 2,
-      title: "Проектирование «To Be»",
+      title: "Проектирование \"Как должно быть\" («To Be»)",
       duration: "2-3 недели",
       icon: "GitBranch",
       color: "from-purple-500 to-purple-600",
@@ -44,7 +44,7 @@ export default function TransformationRoadmap() {
       color: "from-orange-500 to-orange-600",
       description: "Переносим стандарты в систему управления клиентами, таск-трекеры. Настраиваем так, чтобы совершить ошибку было сложнее, чем сделать правильно",
       details: [
-        "Настройка автоматизации в CRM/ERP системах",
+        "Настройка автоматизации в CRM/ERP системах и таск-трекерах",
         "Создание шаблонов, чек-листов и автоматических напоминаний",
         "Интеграция с системами учёта и отчётности",
         "Настройка панелей управления для контроля показателей"
@@ -88,6 +88,12 @@ export default function TransformationRoadmap() {
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Четыре последовательных этапа превращения хаоса в систему. От диагностики до передачи работающего процесса — <span className="text-primary font-semibold">за 8-12 недель</span>
           </p>
+          <div className="mt-6 inline-block px-6 py-3 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+            <p className="text-sm text-slate-700">
+              <Icon name="Info" size={16} className="inline mr-2 text-blue-600" />
+              Перед этапами мы проводим <span className="font-semibold">бесплатную оценку автономности</span> (Шаг 0) — разбираем "узкие места" и составляем индивидуальное предложение
+            </p>
+          </div>
         </div>
 
         {/* Interactive Roadmap */}

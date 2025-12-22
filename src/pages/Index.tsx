@@ -10,8 +10,10 @@ import ChatAssistant from "@/components/ChatAssistant";
 export default function Index() {
   const [formData, setFormData] = useState({
     name: '',
-    contact: '',
+    position: '',
     company: '',
+    phone: '',
+    telegram: '',
     revenue: '',
     description: ''
   });
@@ -32,13 +34,17 @@ export default function Index() {
     
     try {
       const emailBody = `
-        Новая заявка с сайта FOXMetoD
+        Новая заявка на оценку автономности бизнеса - FOXMetoD
         
-        Имя: ${formData.name}
-        Контакт: ${formData.contact}
+        ФИО: ${formData.name}
+        Должность: ${formData.position}
         Компания: ${formData.company}
-        Оборот: ${formData.revenue || 'не указан'}
-        Проблема: ${formData.description}
+        Телефон: ${formData.phone}
+        Telegram: ${formData.telegram || 'не указан'}
+        Текущий оборот: ${formData.revenue || 'не указан'} млн руб/год
+        
+        "Узкие места" в процессах:
+        ${formData.description}
       `;
 
       const response = await fetch('https://functions.poehali.dev/57abd3e3-9316-4b67-9a6c-d6e47170f64d', {
@@ -54,7 +60,7 @@ export default function Index() {
 
       if (response.ok) {
         alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-        setFormData({ name: '', contact: '', company: '', revenue: '', description: '' });
+        setFormData({ name: '', position: '', company: '', phone: '', telegram: '', revenue: '', description: '' });
       } else {
         alert('Ошибка отправки. Напишите нам напрямую в Telegram: @official_xmetod');
       }

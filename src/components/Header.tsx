@@ -10,8 +10,10 @@ import Icon from '@/components/ui/icon';
 interface HeaderProps {
   formData: {
     name: string;
-    contact: string;
+    position?: string;
     company: string;
+    phone?: string;
+    telegram?: string;
     revenue?: string;
     description: string;
   };
@@ -49,46 +51,74 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
               <DialogTrigger asChild>
                 <Button className="bg-primary hover:bg-primary/90">Оценить автономность бизнеса</Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
+              <DialogContent className="sm:max-w-[600px]">
                 <DialogHeader>
                   <DialogTitle>Оценить автономность бизнеса</DialogTitle>
+                  <p className="text-sm text-slate-600 mt-2">
+                    На встрече разберём "узкие места" в процессах и составим индивидуальное предложение по оптимизации 1 процесса
+                  </p>
                 </DialogHeader>
                 <form onSubmit={onSubmit} className="space-y-4">
-                  <div>
-                    <Label htmlFor="name">Ваше имя *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={onInputChange}
-                      placeholder="Иван Иванов"
-                      required
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="name">ФИО *</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={onInputChange}
+                        placeholder="Иван Иванов"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="position">Должность *</Label>
+                      <Input
+                        id="position"
+                        name="position"
+                        value={formData.position || ''}
+                        onChange={onInputChange}
+                        placeholder="Генеральный директор"
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
-                    <Label htmlFor="contact">Telegram или телефон *</Label>
-                    <Input
-                      id="contact"
-                      name="contact"
-                      value={formData.contact}
-                      onChange={onInputChange}
-                      placeholder="@username или +7 (999) 123-45-67"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="company">Название компании и ниша *</Label>
+                    <Label htmlFor="company">Название компании *</Label>
                     <Input
                       id="company"
                       name="company"
                       value={formData.company}
                       onChange={onInputChange}
-                      placeholder="ООО Название, дистрибьютор"
+                      placeholder="ООО Название"
                       required
                     />
                   </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="phone">Телефон *</Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        value={formData.phone || ''}
+                        onChange={onInputChange}
+                        placeholder="+7 (999) 123-45-67"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="telegram">Telegram</Label>
+                      <Input
+                        id="telegram"
+                        name="telegram"
+                        value={formData.telegram || ''}
+                        onChange={onInputChange}
+                        placeholder="@username"
+                      />
+                    </div>
+                  </div>
                   <div>
-                    <Label htmlFor="revenue">Текущий оборот компании (млн руб/год)</Label>
+                    <Label htmlFor="revenue">Текущий оборот (млн руб/год)</Label>
                     <Input
                       id="revenue"
                       name="revenue"
@@ -99,7 +129,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                     />
                   </div>
                   <div>
-                    <Label htmlFor="description">Основная проблема в бизнесе *</Label>
+                    <Label htmlFor="description">"Узкие места" в процессах компании *</Label>
                     <Textarea
                       id="description"
                       name="description"
@@ -156,13 +186,16 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                         Оценить автономность
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[500px]">
+                    <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
                       <DialogHeader>
                         <DialogTitle>Оценить автономность бизнеса</DialogTitle>
+                        <p className="text-sm text-slate-600 mt-2">
+                          На встрече разберём "узкие места" в процессах и составим индивидуальное предложение по оптимизации 1 процесса
+                        </p>
                       </DialogHeader>
                       <form onSubmit={onSubmit} className="space-y-4">
                         <div>
-                          <Label htmlFor="mobile-name">Ваше имя *</Label>
+                          <Label htmlFor="mobile-name">ФИО *</Label>
                           <Input
                             id="mobile-name"
                             name="name"
@@ -173,29 +206,50 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-contact">Telegram или телефон *</Label>
+                          <Label htmlFor="mobile-position">Должность *</Label>
                           <Input
-                            id="mobile-contact"
-                            name="contact"
-                            value={formData.contact}
+                            id="mobile-position"
+                            name="position"
+                            value={formData.position || ''}
                             onChange={onInputChange}
-                            placeholder="@username или +7 (999) 123-45-67"
+                            placeholder="Генеральный директор"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-company">Название компании и ниша *</Label>
+                          <Label htmlFor="mobile-company">Название компании *</Label>
                           <Input
                             id="mobile-company"
                             name="company"
                             value={formData.company}
                             onChange={onInputChange}
-                            placeholder="ООО Название, дистрибьютор"
+                            placeholder="ООО Название"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-revenue">Текущий оборот компании (млн руб/год)</Label>
+                          <Label htmlFor="mobile-phone">Телефон *</Label>
+                          <Input
+                            id="mobile-phone"
+                            name="phone"
+                            value={formData.phone || ''}
+                            onChange={onInputChange}
+                            placeholder="+7 (999) 123-45-67"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="mobile-telegram">Telegram</Label>
+                          <Input
+                            id="mobile-telegram"
+                            name="telegram"
+                            value={formData.telegram || ''}
+                            onChange={onInputChange}
+                            placeholder="@username"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="mobile-revenue">Текущий оборот (млн руб/год)</Label>
                           <Input
                             id="mobile-revenue"
                             name="revenue"
@@ -206,7 +260,7 @@ const Header: React.FC<HeaderProps> = ({ formData, onInputChange, onSubmit }) =>
                           />
                         </div>
                         <div>
-                          <Label htmlFor="mobile-description">Основная проблема в бизнесе *</Label>
+                          <Label htmlFor="mobile-description">"Узкие места" в процессах компании *</Label>
                           <Textarea
                             id="mobile-description"
                             name="description"
