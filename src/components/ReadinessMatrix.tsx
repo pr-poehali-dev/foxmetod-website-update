@@ -208,7 +208,7 @@ export default function ReadinessMatrix() {
               Не уверены, на каком уровне находитесь?
             </p>
             <a href="#solution">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary w-full md:w-auto">
+              <Button size="lg" className="bg-[#E8551B] hover:bg-[#E8551B]/90 text-white w-full md:w-auto shadow-lg">
                 <Icon name="Search" size={20} className="mr-2" />
                 Оценить автономность
               </Button>
