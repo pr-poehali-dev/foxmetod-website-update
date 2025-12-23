@@ -157,135 +157,113 @@ export default function SolutionCasesTools() {
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
-            {cases.map((caseItem, idx) => {
-              const bgColors = [
-                'bg-gradient-to-br from-blue-50 to-slate-50',
-                'bg-gradient-to-br from-purple-50 to-pink-50',
-                'bg-gradient-to-br from-green-50 to-emerald-50',
-                'bg-gradient-to-br from-orange-50 to-amber-50',
-                'bg-gradient-to-br from-cyan-50 to-blue-50'
-              ];
-              return (
-              <Card key={idx} className={`p-4 md:p-6 lg:p-8 ${bgColors[idx]} hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 hover:border-[#E8551B]/30`}>
-                <div className="flex flex-col gap-4 md:gap-6">
-                  {/* Header with niche badge */}
-                  <div className="flex flex-col sm:flex-row items-start gap-3 md:gap-4">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-[#E8551B] text-white rounded-2xl flex items-center justify-center font-bold text-2xl md:text-3xl flex-shrink-0 shadow-lg">
-                      {idx + 1}
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8">
+            {cases.map((caseItem, idx) => (
+              <Card key={idx} className="p-6 bg-white hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-[#E8551B]/50 flex flex-col">
+                {/* Header */}
+                <div className="flex items-start gap-4 mb-4 pb-4 border-b-2 border-slate-100">
+                  <div className="w-12 h-12 bg-[#E8551B] text-white rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0">
+                    {idx + 1}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-100 text-[#19374A] rounded-full text-xs font-semibold mb-2">
+                      <Icon name={caseItem.nicheIcon} size={12} />
+                      <span>{caseItem.niche}</span>
                     </div>
-                    <div className="flex-1">
-                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-[#19374A] rounded-full text-xs font-semibold mb-2">
-                        <Icon name={caseItem.nicheIcon} size={14} />
-                        <span>{caseItem.niche}</span>
-                      </div>
-                      <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-slate-900 mb-1 leading-tight">{caseItem.company}</h3>
-                      <div className="text-sm md:text-base text-[#E8551B] font-semibold flex items-center gap-2">
-                        <Icon name="TrendingDown" size={16} />
-                        {caseItem.revenue}
-                      </div>
+                    <h3 className="text-base md:text-lg font-bold text-slate-900 mb-1 leading-tight">{caseItem.company}</h3>
+                    <div className="text-xs text-red-600 font-medium flex items-center gap-1">
+                      <Icon name="TrendingDown" size={14} />
+                      {caseItem.revenue}
                     </div>
                   </div>
+                </div>
 
-                  {/* Problem */}
-                  <div className="p-4 md:p-5 lg:p-6 bg-red-50 border-2 border-red-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Icon name="AlertTriangle" className="text-white" size={18} />
-                      </div>
-                      <div className="font-bold text-base md:text-lg text-red-900">Проблема</div>
+                {/* Challenge → Solution → Results in 3 columns */}
+                <div className="grid grid-cols-3 gap-3 mb-4 flex-1">
+                  {/* Challenge */}
+                  <div className="bg-red-50 rounded-lg p-3 border-l-4 border-red-500">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon name="AlertTriangle" className="text-red-600 flex-shrink-0" size={16} />
+                      <span className="font-bold text-xs text-red-900">Challenge</span>
                     </div>
-                    <p className="text-sm md:text-base text-slate-700 leading-relaxed pl-11">{caseItem.problem}</p>
+                    <p className="text-xs text-slate-700 leading-snug">{caseItem.problem}</p>
                   </div>
 
-                  {/* Tools */}
-                  <div className="p-4 md:p-5 lg:p-6 bg-blue-50 border-2 border-blue-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div className="flex items-start gap-3 mb-4">
-                      <div className="w-8 h-8 bg-[#19374A] rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Icon name="Wrench" className="text-white" size={18} />
-                      </div>
-                      <div className="font-bold text-base md:text-lg text-[#19374A]">Инструменты FOXMetoD</div>
+                  {/* Solution */}
+                  <div className="bg-blue-50 rounded-lg p-3 border-l-4 border-blue-500">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon name="Wrench" className="text-blue-600 flex-shrink-0" size={16} />
+                      <span className="font-bold text-xs text-blue-900">Solution</span>
                     </div>
-                    <div className="space-y-2 pl-11">
-                      {caseItem.tools.map((tool, i) => (
-                        <div key={i} className="flex items-start gap-3 bg-white p-3 md:p-4 rounded-lg shadow-sm border border-blue-100">
-                          <div className="w-5 h-5 bg-[#7CB1C4] rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <Icon name="Check" className="text-white" size={14} />
-                          </div>
-                          <span className="text-slate-700 text-xs md:text-sm leading-relaxed">{tool}</span>
+                    <div className="space-y-1">
+                      {caseItem.tools.slice(0, 2).map((tool, i) => (
+                        <div key={i} className="flex items-start gap-1.5">
+                          <Icon name="Check" className="text-blue-600 flex-shrink-0 mt-0.5" size={10} />
+                          <span className="text-xs text-slate-700 leading-snug">{tool}</span>
                         </div>
                       ))}
+                      {caseItem.tools.length > 2 && (
+                        <div className="text-xs text-blue-600 font-medium">+{caseItem.tools.length - 2} инструментов</div>
+                      )}
                     </div>
                   </div>
 
                   {/* Results */}
-                  <div className="p-4 md:p-5 lg:p-6 bg-green-50 border-2 border-green-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div className="flex items-start gap-3 mb-4">
-                      <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Icon name="TrendingUp" className="text-white" size={18} />
-                      </div>
-                      <div className="font-bold text-base md:text-lg text-green-900">Результаты</div>
+                  <div className="bg-green-50 rounded-lg p-3 border-l-4 border-green-500">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon name="TrendingUp" className="text-green-600 flex-shrink-0" size={16} />
+                      <span className="font-bold text-xs text-green-900">Results</span>
                     </div>
-                    <div className="grid sm:grid-cols-2 gap-3 pl-11">
-                      {caseItem.results.map((result, i) => (
-                        <div key={i} className="flex items-start gap-3 bg-white p-3 md:p-4 rounded-lg shadow-sm border border-green-100">
-                          <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <Icon name="Check" className="text-white" size={12} />
-                          </div>
-                          <span className="text-slate-700 text-xs md:text-sm leading-relaxed font-medium">{result}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Quote */}
-                  {caseItem.quote && (
-                    <div className="p-4 md:p-5 bg-slate-50 border-2 border-slate-200 rounded-xl shadow-sm">
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-[#E8551B] rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Icon name="Quote" className="text-white" size={16} />
-                        </div>
-                        <p className="text-sm md:text-base text-slate-700 italic leading-relaxed font-medium pt-1">
-                          «{caseItem.quote}»
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="pt-3 md:pt-4 border-t-2 border-dashed border-slate-200">
-                    <div className="text-center font-bold text-sm md:text-base text-slate-800 mb-3 md:mb-4 flex items-center justify-center gap-2">
-                      <Icon name="BarChart3" size={18} className="text-primary" />
-                      Ключевые метрики
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                      {Object.entries(caseItem.metrics).map(([key, value]) => (
-                        <div key={key} className="bg-white p-3 md:p-4 rounded-lg shadow-sm">
-                          <div className="flex justify-between text-sm mb-2">
-                            <span className="text-slate-600 font-medium">
-                              {key === 'revenue' && 'Рост выручки'}
-                              {key === 'profit' && 'Выход в прибыль'}
-                              {key === 'time' && 'Освобождение времени'}
-                              {key === 'leads' && 'Рост потока заявок'}
-                              {key === 'efficiency' && 'Рост эффективности'}
-                              {key === 'engagement' && 'Вовлечённость'}
-                              {key === 'performance' && 'Рост продаж'}
-                              {key === 'simplification' && 'Упрощение процессов'}
-                              {key === 'scalability' && 'Готовность к росту'}
-                              {key === 'meetings' && 'Экономия времени'}
-                              {key === 'decisions' && 'Скорость решений'}
-                              {key === 'roi' && 'Окупаемость маркетинга'}
-                            </span>
-                            <span className="font-bold text-primary text-base md:text-lg">+{value}%</span>
-                          </div>
-                          <Progress value={Math.min(value, 100)} className="h-1.5 md:h-2" />
+                    <div className="space-y-1">
+                      {caseItem.results.slice(0, 2).map((result, i) => (
+                        <div key={i} className="flex items-start gap-1.5">
+                          <Icon name="Check" className="text-green-600 flex-shrink-0 mt-0.5" size={10} />
+                          <span className="text-xs text-slate-700 leading-snug font-medium">{result}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
+
+                {/* Key Metrics - Инфографика */}
+                <div className="bg-slate-50 rounded-lg p-3">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="BarChart3" size={14} className="text-[#E8551B]" />
+                    <span className="font-bold text-xs text-slate-800">Key Metrics</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {Object.entries(caseItem.metrics).map(([key, value]) => (
+                      <div key={key} className="text-center">
+                        <div className="text-2xl font-bold text-[#E8551B] mb-1">+{value}%</div>
+                        <div className="text-xs text-slate-600">
+                          {key === 'revenue' && 'Выручка'}
+                          {key === 'time' && 'Время'}
+                          {key === 'leads' && 'Лиды'}
+                          {key === 'engagement' && 'Вовлечённость'}
+                          {key === 'performance' && 'Продажи'}
+                          {key === 'simplification' && 'Упрощение'}
+                          {key === 'scalability' && 'Рост'}
+                          {key === 'meetings' && 'Совещания'}
+                          {key === 'decisions' && 'Решения'}
+                          {key === 'roi' && 'ROI'}
+                        </div>
+                        <Progress value={Math.min(value, 100)} className="h-1 mt-1" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quote */}
+                {caseItem.quote && (
+                  <div className="mt-4 pt-4 border-t border-slate-200">
+                    <div className="flex gap-2">
+                      <Icon name="Quote" className="text-[#E8551B] flex-shrink-0" size={14} />
+                      <p className="text-xs text-slate-600 italic leading-relaxed">«{caseItem.quote}»</p>
+                    </div>
+                  </div>
+                )}
               </Card>
-              );
-            })}
+            ))}
           </div>
         </div>
       </section>
