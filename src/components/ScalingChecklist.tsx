@@ -327,115 +327,20 @@ export default function ScalingChecklist({ onClose, formData, onInputChange, onS
               </p>
             </div>
 
-            {score < 7 && formData && onSubmit && (
-              <Dialog open={showLeadForm} onOpenChange={setShowLeadForm}>
-                <DialogTrigger asChild>
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-[#19374A] hover:bg-slate-50 font-bold text-base md:text-lg px-6 md:px-8 py-4 md:py-6 shadow-xl"
-                  >
-                    <Icon name="Calendar" size={20} className="mr-2" />
-                    Записаться на оценку автономности
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl">Оценить автономность бизнеса</DialogTitle>
-                    <p className="text-sm text-slate-600 mt-2">
-                      На встрече разберём "узкие места" в процессах и составим индивидуальное предложение по оптимизации 1 процесса. Ваш результат: {score}/7
-                    </p>
-                  </DialogHeader>
-                  <form onSubmit={onSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="result-name">ФИО *</Label>
-                        <Input
-                          id="result-name"
-                          name="name"
-                          value={formData.name}
-                          onChange={onInputChange}
-                          placeholder="Иван Иванов"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="result-position">Должность *</Label>
-                        <Input
-                          id="result-position"
-                          name="position"
-                          value={formData.position || ''}
-                          onChange={onInputChange}
-                          placeholder="Генеральный директор"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="result-company">Название компании *</Label>
-                      <Input
-                        id="result-company"
-                        name="company"
-                        value={formData.company}
-                        onChange={onInputChange}
-                        placeholder="ООО Название"
-                        required
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="result-phone">Телефон</Label>
-                        <Input
-                          id="result-phone"
-                          name="phone"
-                          value={formData.phone || ''}
-                          onChange={onInputChange}
-                          placeholder="+7 (999) 123-45-67"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="result-telegram">Telegram *</Label>
-                        <Input
-                          id="result-telegram"
-                          name="telegram"
-                          value={formData.telegram || ''}
-                          onChange={onInputChange}
-                          placeholder="@username"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="result-revenue">Текущий оборот (млн/год) *</Label>
-                        <Input
-                          id="result-revenue"
-                          name="revenue"
-                          value={formData.revenue || ''}
-                          onChange={onInputChange}
-                          placeholder="200-800"
-                          type="text"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="result-employees">Кол-во сотрудников *</Label>
-                        <Input
-                          id="result-employees"
-                          name="employees"
-                          value={formData.employees || ''}
-                          onChange={onInputChange}
-                          placeholder="10-50"
-                          type="text"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <Button type="submit" className="w-full bg-[#E8551B] hover:bg-[#E8551B]/90 text-white">
-                      Отправить заявку
-                    </Button>
-                  </form>
-                </DialogContent>
-              </Dialog>
+            {score < 7 && (
+              <Button 
+                size="lg" 
+                className="bg-white text-[#19374A] hover:bg-slate-50 font-bold text-base md:text-lg px-6 md:px-8 py-4 md:py-6 shadow-xl"
+                onClick={() => {
+                  if (onClose) onClose();
+                  setTimeout(() => {
+                    document.getElementById('solution')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+              >
+                <Icon name="Calendar" size={20} className="mr-2" />
+                Записаться на полный аудит процессов
+              </Button>
             )}
           </Card>
 
