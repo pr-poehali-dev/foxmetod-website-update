@@ -75,70 +75,67 @@ export default function ReadinessMatrix() {
 
         {/* Interactive Matrix */}
         <div className="max-w-6xl mx-auto space-y-6">
-          {levels.map((item) => (
-            <div key={item.level} className="space-y-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                {/* Show only current card on mobile when detailed view is open */}
-                {levels.map((levelItem) => (
-                  <Card
-                    key={levelItem.level}
-                    className={`cursor-pointer transition-all duration-300 border-2 ${
-                      selectedLevel === levelItem.level
-                        ? `${levelItem.borderColor} shadow-2xl md:scale-105`
-                        : 'border-transparent hover:shadow-xl'
-                    } ${selectedLevel !== null && selectedLevel !== levelItem.level ? 'hidden md:block' : ''}`}
-                    onClick={() => setSelectedLevel(selectedLevel === levelItem.level ? null : levelItem.level)}
+          <div className="grid md:grid-cols-3 gap-6">
+            {levels.map((item) => (
+              <Card
+                key={item.level}
+                className={`cursor-pointer transition-all duration-300 border-2 ${
+                  selectedLevel === item.level
+                    ? `${item.borderColor} shadow-2xl md:scale-105`
+                    : 'border-transparent hover:shadow-xl'
+                } ${selectedLevel !== null && selectedLevel !== item.level ? 'hidden md:block' : ''}`}
+                onClick={() => setSelectedLevel(selectedLevel === item.level ? null : item.level)}
+              >
+                <div className={`p-4 md:p-6 ${item.bgColor} rounded-t-lg`}>
+                  <div className="flex items-center justify-center mb-3">
+                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-lg ${
+                      item.level === 1 ? 'bg-red-500' :
+                      item.level === 2 ? 'bg-yellow-500' :
+                      'bg-green-500'
+                    }`}>
+                      <Icon name={item.icon} className="text-white" size={28} />
+                    </div>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1 text-center">{item.title}</h3>
+                  <p className="text-xs md:text-sm text-slate-600 text-center">{item.subtitle}</p>
+                </div>
+
+                <div className="p-4 md:p-6 bg-white">
+                  <div className="space-y-2 md:space-y-3 mb-4">
+                    {item.characteristics.slice(0, 3).map((char, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <Icon 
+                          name={item.level === 3 ? "Check" : "Minus"} 
+                          size={14} 
+                          className={`mt-0.5 flex-shrink-0 ${
+                            item.level === 3 ? 'text-green-600' : 'text-slate-400'
+                          }`} 
+                        />
+                        <span className="text-xs md:text-sm text-slate-700 leading-tight">{char}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button
+                    variant={selectedLevel === item.level ? "default" : "outline"}
+                    size="sm"
+                    className="w-full whitespace-normal h-auto py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedLevel(selectedLevel === item.level ? null : item.level);
+                    }}
                   >
-                    <div className={`p-4 md:p-6 ${levelItem.bgColor} rounded-t-lg`}>
-                      <div className="flex items-center justify-center mb-3">
-                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-lg ${
-                          levelItem.level === 1 ? 'bg-red-500' :
-                          levelItem.level === 2 ? 'bg-yellow-500' :
-                          'bg-green-500'
-                        }`}>
-                          <Icon name={levelItem.icon} className="text-white" size={28} />
-                        </div>
-                      </div>
-                      <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1 text-center">{levelItem.title}</h3>
-                      <p className="text-xs md:text-sm text-slate-600 text-center">{levelItem.subtitle}</p>
-                    </div>
+                    {selectedLevel === item.level ? 'Свернуть' : 'Подробнее'}
+                    <Icon name={selectedLevel === item.level ? "ChevronUp" : "ChevronDown"} size={16} className="ml-2 flex-shrink-0" />
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
 
-                    <div className="p-4 md:p-6 bg-white">
-                      <div className="space-y-2 md:space-y-3 mb-4">
-                        {levelItem.characteristics.slice(0, 3).map((char, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <Icon 
-                              name={levelItem.level === 3 ? "Check" : "Minus"} 
-                              size={14} 
-                              className={`mt-0.5 flex-shrink-0 ${
-                                levelItem.level === 3 ? 'text-green-600' : 'text-slate-400'
-                              }`} 
-                            />
-                            <span className="text-xs md:text-sm text-slate-700 leading-tight">{char}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <Button
-                        variant={selectedLevel === levelItem.level ? "default" : "outline"}
-                        size="sm"
-                        className="w-full whitespace-normal h-auto py-2"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedLevel(selectedLevel === levelItem.level ? null : levelItem.level);
-                        }}
-                      >
-                        {selectedLevel === levelItem.level ? 'Свернуть' : 'Подробнее'}
-                        <Icon name={selectedLevel === levelItem.level ? "ChevronUp" : "ChevronDown"} size={16} className="ml-2 flex-shrink-0" />
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-
-              {/* Detailed View - shows right after the selected card */}
-              {selectedLevel === item.level && (
-                <div className="max-w-4xl mx-auto">
+          {/* Detailed View - shows right after all cards */}
+          {selectedLevel !== null && (
+            <div className="max-w-4xl mx-auto">
             <Card className="p-6 md:p-8 bg-white shadow-2xl border-2 border-primary/20">
               <div className="flex items-start gap-4 md:gap-6 mb-6">
                 <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 ${
@@ -202,10 +199,7 @@ export default function ReadinessMatrix() {
                 </div>
               )}
             </Card>
-                </div>
-              )}
-            </div>
-          ))}
+          )}
         </div>
 
         {/* CTA */}
