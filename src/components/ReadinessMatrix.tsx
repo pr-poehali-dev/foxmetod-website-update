@@ -134,30 +134,30 @@ export default function ReadinessMatrix() {
 
         {/* Detailed View */}
         {selectedLevel !== null && (
-          <div className="max-w-4xl mx-auto">
-            <Card className="p-8 bg-white shadow-2xl border-2 border-primary/20">
-              <div className="flex items-start gap-6 mb-6">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 ${
+          <div className="max-w-4xl mx-auto mt-8">
+            <Card className="p-6 md:p-8 bg-white shadow-2xl border-2 border-primary/20">
+              <div className="flex items-start gap-4 md:gap-6 mb-6">
+                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 ${
                   levels[selectedLevel - 1].level === 1 ? 'bg-red-500' :
                   levels[selectedLevel - 1].level === 2 ? 'bg-yellow-500' :
                   'bg-green-500'
                 }`}>
-                  <Icon name={levels[selectedLevel - 1].icon} className="text-white" size={32} />
+                  <Icon name={levels[selectedLevel - 1].icon} className="text-white" size={24} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{levels[selectedLevel - 1].title}</h3>
-                  <p className="text-base md:text-lg text-slate-600">{levels[selectedLevel - 1].subtitle}</p>
+                  <h3 className="text-xl md:text-3xl font-bold text-slate-900 mb-2">{levels[selectedLevel - 1].title}</h3>
+                  <p className="text-sm md:text-lg text-slate-600">{levels[selectedLevel - 1].subtitle}</p>
                 </div>
               </div>
 
               <div className="mb-6">
-                <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <h4 className="text-sm md:text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
                   <Icon name="List" size={20} className="text-primary" />
                   Характерные признаки:
                 </h4>
-                <div className="grid md:grid-cols-2 gap-3">
+                <div className="grid gap-3">
                   {levels[selectedLevel - 1].characteristics.map((char, idx) => (
-                    <div key={idx} className="flex items-start gap-2 p-3 bg-slate-50 rounded-lg">
+                    <div key={idx} className="flex items-start gap-2 p-2 md:p-3 bg-slate-50 rounded-lg">
                       <Icon 
                         name={selectedLevel === 3 ? "CheckCircle" : "AlertCircle"} 
                         size={18} 
@@ -171,18 +171,18 @@ export default function ReadinessMatrix() {
                 </div>
               </div>
 
-              <div className={`p-5 rounded-xl border-l-4 ${
+              <div className={`p-4 md:p-5 rounded-xl border-l-4 ${
                 selectedLevel === 3 
                   ? 'bg-green-50 border-green-500' 
                   : 'bg-blue-50 border-blue-500'
               }`}>
                 <div className="flex items-start gap-3">
-                  <Icon name="Lightbulb" size={24} className={selectedLevel === 3 ? 'text-green-600' : 'text-blue-600'} />
+                  <Icon name="Lightbulb" size={20} className={selectedLevel === 3 ? 'text-green-600 flex-shrink-0' : 'text-blue-600 flex-shrink-0'} />
                   <div>
-                    <h4 className="font-bold text-slate-900 mb-2">
+                    <h4 className="text-sm md:text-base font-bold text-slate-900 mb-2">
                       {selectedLevel === 3 ? 'Как поддерживать уровень:' : 'Как перейти на следующий уровень:'}
                     </h4>
-                    <p className="text-slate-700">{levels[selectedLevel - 1].solution}</p>
+                    <p className="text-sm md:text-base text-slate-700">{levels[selectedLevel - 1].solution}</p>
                   </div>
                 </div>
               </div>
@@ -190,9 +190,9 @@ export default function ReadinessMatrix() {
               {selectedLevel < 3 && (
                 <div className="mt-6 text-center">
                   <a href="#solution">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-secondary">
+                    <Button size="lg" className="bg-gradient-to-r from-[#E8551B] to-[#ff6b35] hover:from-[#E8551B]/90 hover:to-[#ff6b35]/90 text-white shadow-lg">
                       <Icon name="Rocket" size={20} className="mr-2" />
-                      Оценить автономность моего бизнеса
+                      Оценить автономность бизнеса
                     </Button>
                   </a>
                 </div>

@@ -98,22 +98,22 @@ export default function Index() {
       />
       
       {/* Checklist CTA Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50">
         <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-xl border-2 border-orange-200">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-100 text-[#E8551B] rounded-full text-sm font-semibold mb-4">
               <span className="text-2xl">🦊</span>
               <span>Метод лисы</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Готов ли ваш бизнес к масштабированию?
             </h2>
-            <p className="text-lg text-slate-600 mb-8">
+            <p className="text-base md:text-lg text-slate-600 mb-8">
               Проверьте 7 ключевых признаков готовности процесса к росту. Узнайте, где ваша система теряет деньги.
             </p>
             <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
               <DialogTrigger asChild>
-                <Button size="lg" className="bg-[#E8551B] hover:bg-[#E8551B]/90 text-white px-8 py-6 text-lg shadow-lg">
+                <Button size="lg" className="bg-gradient-to-r from-[#E8551B] to-[#ff6b35] hover:from-[#E8551B]/90 hover:to-[#ff6b35]/90 text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg shadow-xl">
                   <Icon name="ClipboardCheck" size={20} className="mr-2" />
                   Заполнить чек-лист и получить результат
                 </Button>

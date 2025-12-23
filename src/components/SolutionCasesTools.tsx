@@ -158,8 +158,16 @@ export default function SolutionCasesTools() {
           </div>
 
           <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
-            {cases.map((caseItem, idx) => (
-              <Card key={idx} className="p-4 md:p-6 lg:p-8 bg-white hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 hover:border-[#E8551B]/30">
+            {cases.map((caseItem, idx) => {
+              const bgColors = [
+                'bg-gradient-to-br from-blue-50 to-slate-50',
+                'bg-gradient-to-br from-purple-50 to-pink-50',
+                'bg-gradient-to-br from-green-50 to-emerald-50',
+                'bg-gradient-to-br from-orange-50 to-amber-50',
+                'bg-gradient-to-br from-cyan-50 to-blue-50'
+              ];
+              return (
+              <Card key={idx} className={`p-4 md:p-6 lg:p-8 ${bgColors[idx]} hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 hover:border-[#E8551B]/30`}>
                 <div className="flex flex-col gap-4 md:gap-6">
                   {/* Header with niche badge */}
                   <div className="flex flex-col sm:flex-row items-start gap-3 md:gap-4">
@@ -276,7 +284,8 @@ export default function SolutionCasesTools() {
                   </div>
                 </div>
               </Card>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
