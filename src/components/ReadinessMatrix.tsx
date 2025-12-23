@@ -188,7 +188,7 @@ export default function ReadinessMatrix() {
                 </div>
               </div>
 
-              {item.level < 3 && (
+              {selectedLevel < 3 && (
                 <div className="mt-6 text-center">
                   <a href="#solution">
                     <Button size="lg" className="bg-gradient-to-r from-[#E8551B] to-[#ff6b35] hover:from-[#E8551B]/90 hover:to-[#ff6b35]/90 text-white shadow-lg w-full md:w-auto whitespace-normal h-auto py-3">
@@ -199,6 +199,7 @@ export default function ReadinessMatrix() {
                 </div>
               )}
             </Card>
+            </div>
           )}
         </div>
 
