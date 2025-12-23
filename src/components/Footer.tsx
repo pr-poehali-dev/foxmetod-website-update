@@ -21,9 +21,9 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold mb-3 md:mb-4 text-base md:text-lg">Контакты</h4>
             <div className="space-y-2 text-sm md:text-base text-gray-400">
-              <p><a href="tel:+79220227225" className="hover:text-white transition-colors">+7 922 022 72 25</a></p>
-              <p><a href="https://t.me/natalyatomasheva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">t.me/natalyatomasheva</a></p>
-              <p><a href="mailto:n.tomasheva@xmetod.ru" className="hover:text-white transition-colors">n.tomasheva@xmetod.ru</a></p>
+              <p><a href="tel:+79222904787" className="hover:text-white transition-colors">+7 922 290 4787</a></p>
+              <p><a href="mailto:sale@foxmetod.ru" className="hover:text-white transition-colors">sale@foxmetod.ru</a></p>
+              <p><a href="https://t.me/official_xmetod" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">t.me/official_xmetod</a></p>
             </div>
           </div>
         </div>
